@@ -1,0 +1,153 @@
+html {
+  margin: 0;
+  height: 100%;
+}
+html body.white-one {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  background-image: linear-gradient(180deg, #000000, #2c2c2c);
+  background-repeat: no-repeat;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+html body.white-one main.main-section {
+  max-width: 450px;
+  min-height: 754px;
+  width: 100%;
+  display: block;
+  margin: 10% auto 0 auto;
+  background-image: linear-gradient(180deg, #141414, #4d4d4d);
+  box-shadow: 2px -2px 24px -4px #4a8b8f;
+  border-radius: 25px;
+}
+html body.white-one main.main-section section.calculator-body header.value-screen {
+  display: flex;
+  flex-direction: row;
+}
+html body.white-one main.main-section section.calculator-body header.value-screen textarea {
+  flex: 1 0;
+  flex-wrap: nowrap;
+  padding: 50px;
+  resize: none;
+  height: 250px;
+  font-size: 20px;
+  border: none;
+  border-radius: 25px;
+  background-image: linear-gradient(0deg, #292929, #292929);
+}
+html body.white-one main.main-section section.calculator-body section.button-section aside.optional-buttons {
+  margin: 10px 5px 0 5px;
+}
+html body.white-one main.main-section section.calculator-body section.button-section aside.optional-buttons nav.checkbox-navigation {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+html body.white-one main.main-section section.calculator-body section.button-section aside.optional-buttons nav.checkbox-navigation label.switch {
+  position: relative;
+  display: block;
+  width: 60px;
+  height: 35px;
+}
+html body.white-one main.main-section section.calculator-body section.button-section aside.optional-buttons nav.checkbox-navigation label.switch .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(0deg, #141414, #4d4d4d);
+  transition: 0.5s;
+  border: 3px solid darkgray;
+  box-shadow: 0px -1px 6px -2px #4a8b8f;
+}
+html body.white-one main.main-section section.calculator-body section.button-section aside.optional-buttons nav.checkbox-navigation label.switch input {
+  display: none;
+}
+html body.white-one main.main-section section.calculator-body section.button-section aside.optional-buttons nav.checkbox-navigation label.switch .slider:before {
+  position: absolute;
+  content: "";
+  bottom: 14px;
+  top: 5px;
+  background-color: #ffffff;
+  transition: 0.5s;
+}
+html body.white-one main.main-section section.calculator-body section.button-section aside.optional-buttons nav.checkbox-navigation label.switch input:checked + .slider {
+  background-image: linear-gradient(180deg, #fdfdfd, #5c5c5c);
+}
+html body.white-one main.main-section section.calculator-body section.button-section aside.optional-buttons nav.checkbox-navigation label.switch input:checked + .slider:before {
+  transform: translateX(33px) rotateZ(50deg);
+  background: #ffffff;
+}
+html body.white-one main.main-section section.calculator-body section.button-section aside.optional-buttons nav.checkbox-navigation label.switch .slider.round {
+  border-radius: 35px;
+}
+html body.white-one main.main-section section.calculator-body section.button-section aside.optional-buttons nav.checkbox-navigation label.switch .slider.round:before {
+  width: 43%;
+  height: 43%;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  transform: rotateZ(-50deg);
+}
+html body.white-one main.main-section section.calculator-body section.button-section aside.optional-buttons nav.checkbox-navigation span.slider-text {
+  flex-grow: 1;
+  padding-top: 7px;
+  font-weight: bold;
+  color: #ffffff;
+  font-size: 17px;
+}
+html body.white-one main.main-section section.calculator-body section.button-section aside.optional-buttons nav.checkbox-navigation span.reverse-resolution {
+  padding: 2px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-image: linear-gradient(0deg, #141414, #4d4d4d);
+  box-shadow: 0px -1px 6px -2px #4a8b8f;
+  font-weight: bolder;
+  font-size: 25px;
+  color: #ffffff;
+  text-align: center;
+}
+html body.white-one main.main-section section.calculator-body section.button-section aside.optional-buttons nav.checkbox-navigation span.reverse-resolution:hover {
+  background: #555;
+}
+html body.white-one main.main-section section.calculator-body section.button-section aside.optional-buttons nav.checkbox-navigation span.reverse-resolution:active {
+  background: #f7f7f7;
+  color: #000000;
+}
+html body.white-one main.main-section section.calculator-body nav.main-buttons {
+  margin: 15px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 5px;
+}
+html body.white-one main.main-section section.calculator-body nav.main-buttons div.calc-button {
+  flex-grow: 1;
+  padding: 12px 0 0 0;
+  background-image: linear-gradient(180deg, #56cbffe0, #3c3c3c);
+  box-shadow: 0px -1px 6px -2px #4a8b8f;
+  border-radius: 25px;
+  flex-basis: 110px;
+  height: 30px;
+  text-align: center;
+  color: white;
+}
+html body.white-one main.main-section section.calculator-body nav.main-buttons div.calc-button.special-values {
+  background: linear-gradient(180deg, #ff3d3ddb, #3c3c3c);
+}
+html body.white-one main.main-section section.calculator-body nav.main-buttons div.calc-button.main-commands {
+  background: linear-gradient(177deg, #59f685, #3c3c3c);
+}
+html body.white-one main.main-section section.calculator-body nav.main-buttons div.calc-button:hover {
+  background: #555;
+}
+html body.white-one main.main-section section.calculator-body nav.main-buttons div.calc-button:active {
+  background: #f7f7f7;
+  color: #000000;
+}
+html body.white-one main.main-section section.calculator-body nav.main-buttons div.equal {
+  flex-basis: 244px;
+}

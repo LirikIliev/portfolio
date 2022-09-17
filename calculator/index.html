@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="public/images/icons8-estimate-96.png" type="image/x-icon" />
+    <link rel="stylesheet" href="public/css/dark/dark.css" type="text/css" />
+    <script src="/src/index.js" type="module" defer></script>
+    <script src="/src/switchTheme.js" type="module" defer></script>
+    <title>Calculator</title>
+</head>
+
+<body class="white-one">
+    <main class="main-section">
+        <section class="calculator-body">
+            <header class="value-screen">
+                <textarea name="value-screen" id="textarea-screen" cols="30" rows="2" disabled
+                    placeholder="RAD"></textarea>
+            </header>
+            <section class="button-section">
+                <aside class="optional-buttons">
+                    <nav class="checkbox-navigation">
+                        <label class="switch">
+                            <input type='checkbox' class="slider">
+                            <span class="slider round"></span>
+                        </label>
+                        <span class='slider-text'>Switch to white theme</span>
+                        <span class="reverse-resolution">⬍</span>
+                    </nav>
+                </aside>
+                <nav class="main-buttons" id="buttons">
+
+                    <div value="±" class="calc-button special-values">±</div>
+                    <div value="DEL" class="calc-button special-values">DEL</div>
+                    <div value="%" class="calc-button special-values">%</div>
+                    <div value="√" class="calc-button special-values">√</div>
+                    <div value="9" class="calc-button">9</div>
+                    <div value="." class="calc-button main-commands">.</div>
+                    <div value="8" class="calc-button">8</div>
+                    <div value="7" class="calc-button">7</div>
+                    <div value="÷" class="calc-button main-commands">÷</div>
+                    <div value="6" class="calc-button">6</div>
+                    <div value="5" class="calc-button">5</div>
+                    <div value="x" class="calc-button main-commands">x</div>
+                    <div value="4" class="calc-button">4</div>
+                    <div value="3" class="calc-button">3</div>
+                    <div value="-" class="calc-button main-commands">-</div>
+                    <div value="2" class="calc-button">2</div>
+                    <div value="1" class="calc-button">1</div>
+                    <div value="+" class="calc-button main-commands">+</div>
+                    <div value="0" class="calc-button">0</div>
+                    <div value="=" class="calc-button main-commands equal">=</div>
+
+                </nav>
+            </section>
+        </section>
+    </main>
+</body>
+
+</html>

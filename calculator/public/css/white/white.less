@@ -1,0 +1,204 @@
+@box-shadow: #ff5100c4;
+@buttons-color: linear-gradient(180deg, #ff3d3ddb, #3c3c3c);
+@special-button-color: linear-gradient(177deg, #59f685, #3c3c3c);
+@second-special-buttons-color: linear-gradient(180deg, #56cbffe0, #3c3c3c);
+
+
+html {
+    margin: 0;
+    height: 100%;
+
+    body.white-one {
+        position: relative;
+        margin: 0;
+        padding: 0;
+        background-image: linear-gradient(180deg, rgb(255, 255, 255), rgb(224, 224, 224));
+        background-repeat: no-repeat;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+        main.main-section {
+            max-width: 450px;
+            min-height: 754px;
+            width: 100%;
+            display: block;
+            margin: 10% auto 0 auto;
+
+            background-image: linear-gradient(180deg, rgb(212, 212, 212), rgb(122, 122, 122));
+            box-shadow: 2px -2px 24px -4px @box-shadow;
+            border-radius: 25px;
+
+            section.calculator-body {
+
+                header.value-screen {
+                    display: flex;
+                    flex-direction: row;
+
+                    textarea {
+                        flex: 1 0;
+                        flex-wrap: nowrap;
+                        padding: 50px;
+                        resize: none;
+                        height: 250px;
+
+                        font-size: 20px;
+                        color: #eaeaea;
+
+                        border: none;
+                        border-radius: 25px;
+
+                        background-image: linear-gradient(0deg, #a4a4a4, #a4a3a3);
+                    }
+                }
+
+                section.button-section {
+                    aside.optional-buttons {
+                        margin: 10px 5px 0 5px;
+
+                        nav.checkbox-navigation {
+                            display: flex;
+                            flex-direction: row;
+                            flex-wrap: wrap;
+                            gap: 10px;
+
+                            // switch button
+                            label.switch {
+                                position: relative;
+                                display: block;
+                                width: 60px;
+                                height: 35px;
+
+                                .slider {
+                                    position: absolute;
+                                    cursor: pointer;
+                                    top: 0;
+                                    right: 0;
+                                    bottom: 0;
+                                    left: 0;
+                                    background-image: linear-gradient(0deg, rgb(22, 22, 22), rgb(77, 77, 77));
+                                    transition: .5s;
+                                    border: 3px solid darkgray;
+                                    box-shadow: 0px 1px 8px -2px @box-shadow;
+                                }
+
+                                input {
+                                    display: none;
+                                }
+
+                                .slider:before {
+                                    position: absolute;
+                                    content: "";
+                                    bottom: 14px;
+                                    top: 5px;
+                                    background-color: rgb(255, 255, 255);
+                                    transition: .5s;
+                                }
+
+                                input:checked+.slider {
+                                    background-image: linear-gradient(0deg, rgb(255, 255, 255), rgb(224, 224, 224));
+                                }
+
+                                input:checked+.slider:before {
+                                    transform: translateX(33px) rotateZ(50deg);
+                                    background: rgb(136, 136, 136);
+                                }
+
+                                .slider.round {
+                                    border-radius: 35px;
+                                }
+
+                                .slider.round:before {
+                                    width: 43%;
+                                    height: 43%;
+                                    border-top-left-radius: 50px;
+                                    border-top-right-radius: 50px;
+                                    transform: rotateZ(-50deg);
+                                }
+                            }
+
+                            span.slider-text {
+                                flex-grow: 1;
+                                padding-top: 7px;
+                                font-weight: bold;
+                                color: #757575;
+                                font-size: 17px;
+                            }
+
+                            span.reverse-resolution {
+                                padding: 2px;
+                                width: 40px;
+                                height: 40px;
+
+                                border-radius: 50%;
+
+                                background-image: linear-gradient(0deg, rgb(255, 255, 255), rgb(224, 224, 224));
+                                box-shadow: -2px -2px 4px -2px @box-shadow;
+
+                                font-weight: bolder;
+                                font-size: 25px;
+                                text-align: center;
+                                color: #979494;
+
+                                &:hover {
+                                    background: #555;
+                                }
+
+                                &:active {
+                                    background: rgb(247, 247, 247);
+                                    color: #000000;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                nav.main-buttons {
+                    margin: 15px;
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    justify-content: space-around;
+                    gap: 5px;
+
+                    div.calc-button {
+                        flex-grow: 1;
+                        padding: 12px 0 0 0;
+
+                        background-image: @buttons-color;
+                        box-shadow: 0px 1px 8px -2px@box-shadow;
+
+                        border-radius: 25px;
+                        flex-basis: 110px;
+                        height: 30px;
+
+                        text-align: center;
+                        color: white;
+
+                        &.special-values {
+                            background: @special-button-color;
+                        }
+
+                        &.main-commands {
+                            background: @second-special-buttons-color;
+                        }
+
+                        &:hover {
+                            background: white;
+                            color: rgb(145, 145, 145);
+                        }
+
+                        &:active {
+                            background: rgb(231, 231, 231);
+                            color: #000000;
+                        }
+
+                    }
+
+                    div.equal {
+                        flex-basis: 244px;
+                    }
+
+                }
+            }
+        }
+    }
+}
