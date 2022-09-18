@@ -81,7 +81,7 @@ export function calculateSum(arr) {
                     arr[i] = arr[i].join('');
                 }
             } else if (arr[i].includes('√')) {
-                sum += Number(action['√'](arr[i]));
+                sum = sumTheSum(sum, arr[i - 1], Number(action['√'](arr[i])));
             };
         } else {
             sum = sumTheSum(sum, arr[i - 1], arr[i])

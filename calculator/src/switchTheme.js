@@ -6,7 +6,9 @@ switchButton.addEventListener('click', switchThemeColor);
 function switchThemeColor(e) {
     if (e.target.checked) {
         cssFileName[1].href = 'http://127.0.0.1:5500/public/css/white/white.css';
+        switchNameTitle.textContent = 'Switch to dark theme';
     } else {
         cssFileName[1].href = 'http://127.0.0.1:5500/public/css/dark/dark.css';
+        switchNameTitle.textContent = 'Switch to white theme';
     };
 };

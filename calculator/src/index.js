@@ -78,7 +78,9 @@ function calculate(e) {
                         sum = calculateSum(textAreaValue);
                         printResult(textAreaValue, true, sum, textAreaSelect);
                         return;
-                    };
+                    } else {
+                        return;
+                    }
 
                 } else if (value == '√' || firstDigit
                     .toString()
