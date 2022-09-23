@@ -1,0 +1,161 @@
+@media screen and (min-width: 821px) {
+  section.edit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    margin: 100px auto 0 auto;
+    width: 520px;
+    min-height: 550px;
+    background: rgba(48, 48, 48, 0.9);
+    border-radius: 25px;
+    box-shadow: 12px 10px 10px -8px;
+  }
+
+  section.edit h1.edit-title {
+    color: white;
+    margin: 10px 0 30px 0;
+  }
+
+  section.edit form.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: white;
+    font-size: 1.6em;
+  }
+
+  section.edit form.edit-form div.edit-form-box {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  section.edit form.edit-form div.edit-form-box label.edit-label {
+    flex-basis: 220px;
+  }
+
+  section.edit form.edit-form div.edit-form-box label.required:after {
+    content: ' *';
+    color: red;
+    font-size: 18px;
+    margin-right: 5px;
+  }
+
+  section.edit form.edit-form div.edit-form-box textarea {
+    resize: none;
+    height: 90px;
+    width: 350px;
+    border-radius: 15px;
+  }
+
+  section.edit form.edit-form div.edit-form-box div.value-box input {
+    border-radius: 25px;
+    height: 35px;
+    width: 230px;
+  }
+
+  section.edit form.edit-form div.edit-form-box div.value-box div.error-box {
+    margin-top: 5px;
+    text-align: center;
+    font-size: 0.6em;
+    color: red;
+  }
+
+  section.edit form.edit-form div.edit-form-box input.submit-button {
+    margin-top: 20px;
+    flex-basis: 260px;
+    min-height: 40px;
+    border-radius: 15px;
+  }
+
+  section.edit form.edit-form div.edit-form-box input.submit-button:hover {
+    border: 3px solid #555;
+    border-radius: 15px;
+    box-shadow: 5px 2px 9px -3px #00ffbb;
+  }
+
+  section.edit form.edit-form div.edit-form-box input.submit-button:hover:active {
+    box-shadow: 5px 2px 9px -3px #00d9ff;
+  }
+
+  section.edit form.edit-form div.submit {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 820px) {
+  section.edit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    margin: 100px auto 0 auto;
+    max-width: 500px;
+    max-height: 4s50px;
+    background: rgba(48, 48, 48, 0.9);
+    border-radius: 25px;
+    box-shadow: 12px 10px 10px -8px;
+  }
+
+  section.edit h1.edit-title {
+    color: white;
+    margin: 10px 0 30px 0;
+    font-size: 1.2em;
+  }
+
+  section.edit form.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: white;
+    font-size: 1em;
+  }
+
+  section.edit form.edit-form div.edit-form-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  section.edit form.edit-form div.edit-form-box div.value-box input {
+    border-radius: 25px;
+    height: 35px;
+    width: 230px;
+  }
+
+  section.edit form.edit-form div.edit-form-box div.value-box div.error-box {
+    margin-top: 5px;
+    text-align: center;
+    font-size: 0.9em;
+    color: red;
+  }
+
+  section.edit form.edit-form div.edit-form-box label.required:after {
+    content: ' *';
+    color: red;
+    font-size: 15px;
+    margin-right: 5px;
+  }
+
+  section.edit form.edit-form div.edit-form-box input.submit-button {
+    margin-top: 20px;
+    flex-basis: 35px;
+    min-height: 40px;
+    border-radius: 15px;
+  }
+
+  section.edit form.edit-form div.edit-form-box input.submit-button:hover {
+    border: 3px solid #555;
+    border-radius: 15px;
+    box-shadow: 5px 2px 9px -3px #00ffbb;
+  }
+
+  section.edit form.edit-form div.edit-form-box input.submit-button:hover:active {
+    box-shadow: 5px 2px 9px -3px #00d9ff;
+  }
+
+  section.edit form.edit-form div.submit {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,156 @@
+@media screen and (min-width: 821px) {
+  section.registration {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    margin: 100px auto 0 auto;
+    width: 500px;
+    min-height: 550px;
+    background: rgba(48, 48, 48, 0.9);
+    border-radius: 25px;
+    box-shadow: 12px 10px 10px -8px;
+  }
+
+  section.registration h1.registration-title {
+    color: white;
+    margin: 10px 0 30px 0;
+  }
+
+  section.registration form.registration-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: white;
+    font-size: 1.6em;
+  }
+
+  section.registration form.registration-form div.register-form-box {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  section.registration form.registration-form div.register-form-box label.register-label {
+    flex-basis: 250px;
+  }
+
+  section.registration form.registration-form div.register-form-box label.required:after {
+    content: ' *';
+    color: red;
+    font-size: 18px;
+    margin-right: 5px;
+  }
+
+  section.registration form.registration-form div.register-form-box div.value-box input {
+    border-radius: 25px;
+    height: 35px;
+    width: 230px;
+    padding: 0 10px;
+  }
+
+  section.registration form.registration-form div.register-form-box div.value-box div.error-box {
+    margin-top: 5px;
+    text-align: center;
+    font-size: 0.6em;
+    color: red;
+  }
+
+  section.registration form.registration-form div.register-form-box input.submit-button {
+    margin-top: 20px;
+    flex-basis: 260px;
+    min-height: 40px;
+    border-radius: 15px;
+  }
+
+  section.registration form.registration-form div.register-form-box input.submit-button:hover {
+    border: 3px solid #555;
+    border-radius: 15px;
+    box-shadow: 5px 2px 9px -3px #00ffbb;
+  }
+
+  section.registration form.registration-form div.register-form-box input.submit-button:hover:active {
+    box-shadow: 5px 2px 9px -3px #00d9ff;
+  }
+
+  section.registration form.registration-form div.submit {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 820px) {
+  section.registration {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    margin: 100px auto 0 auto;
+    max-width: 500px;
+    background: rgba(48, 48, 48, 0.9);
+    border-radius: 25px;
+    box-shadow: 12px 10px 10px -8px;
+  }
+
+  section.registration h1.registration-title {
+    color: white;
+    margin: 10px 0 30px 0;
+    font-size: 1.2em;
+  }
+
+  section.registration form.registration-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: white;
+    font-size: 1.3em;
+  }
+
+  section.registration form.registration-form div.register-form-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  section.registration form.registration-form div.register-form-box div.value-box input {
+    border-radius: 25px;
+    height: 35px;
+    width: 230px;
+    padding: 0 10px;
+  }
+
+  section.registration form.registration-form div.register-form-box div.value-box div.error-box {
+    margin-top: 5px;
+    text-align: center;
+    font-size: 0.7em;
+    color: red;
+  }
+
+  section.registration form.registration-form div.register-form-box label.required:after {
+    content: ' *';
+    color: red;
+    font-size: 15px;
+    margin-right: 5px;
+  }
+
+  section.registration form.registration-form div.register-form-box input.submit-button {
+    margin-top: 20px;
+    flex-basis: 30px;
+    min-height: 40px;
+    border-radius: 15px;
+    min-width: 150px;
+  }
+
+  section.registration form.registration-form div.register-form-box input.submit-button:hover {
+    border: 3px solid #555;
+    border-radius: 15px;
+    box-shadow: 5px 2px 9px -3px #00ffbb;
+  }
+
+  section.registration form.registration-form div.register-form-box input.submit-button:hover:active {
+    box-shadow: 5px 2px 9px -3px #00d9ff;
+  }
+
+  section.registration form.registration-form div.submit {
+    justify-content: center;
+  }
+}

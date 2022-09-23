@@ -1,0 +1,288 @@
+@media screen and (min-width: 821px) {
+  section.main-section-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    bottom: 0;
+    border-radius: 25px;
+  }
+
+  section.main-section-box section.company-info-container {
+    display: flex;
+    justify-content: space-around;
+    width: 90%;
+    align-self: center;
+    margin: 50px;
+  }
+
+  section.main-section-box section.company-info-container article.company-info-articles {
+    align-self: center;
+    flex-basis: 950px;
+  }
+
+  section.main-section-box section.company-info-container article.company-info-articles h1.main-title {
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 2.5em;
+    color: white;
+  }
+
+  section.main-section-box section.company-info-container article.company-info-articles h3.second-title {
+    margin: 0 0 20px 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 3.5em;
+    color: white;
+  }
+
+  section.main-section-box section.company-info-container img.company-image {
+    max-width: 60%;
+    align-self: flex-end;
+    /* background: rgba(255, 255, 255, 0.3); */
+    /* box-shadow: 12px 10px 10px -8px; */
+  }
+
+  section.main-section-box section.company-info-container p.company-describe {
+    text-align: justify;
+    max-width: 50%;
+  }
+
+  section.main-section-box section.destination-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 60%;
+    justify-content: space-around;
+    min-height: 400px;
+    align-items: center;
+    gap: 50px;
+    align-self: center;
+    padding: 0 0 20px 0;
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.2), rgba(156, 156, 156, 0.07));
+    backdrop-filter: blur(2px);
+    border-radius: 25px;
+    box-shadow: 12px 10px 10px -8px;
+  }
+
+  section.main-section-box section.destination-container h2.destination-container-title {
+    margin: 40px 0 0 0;
+    text-transform: uppercase;
+    font-size: 2.2em;
+    color: #ffffff;
+    text-align: center;
+    flex-basis: 100%;
+  }
+
+  section.main-section-box section.destination-container div.destination-box {
+    text-align: center;
+    min-width: 280px;
+    background: #5f5f5f;
+    border-radius: 25px;
+  }
+
+  section.main-section-box section.destination-container div.destination-box:hover {
+    box-shadow: 5px 2px 9px -3px #00d9ff;
+  }
+
+  section.main-section-box section.destination-container div.destination-box:active {
+    box-shadow: 5px 2px 9px -3px #00ffbb;
+  }
+
+  section.main-section-box section.destination-container div.destination-box h2.destination-title {
+    margin: 10px;
+    text-transform: capitalize;
+    font-weight: bold;
+    color: white;
+    font-size: 1.2em;
+  }
+
+  section.main-section-box section.destination-container div.destination-box h2.destination-title span.post-label {
+    text-transform: uppercase;
+    margin-right: 10px;
+  }
+
+  section.main-section-box section.destination-container div.destination-box h4.destination-title {
+    margin: 10px;
+    text-transform: capitalize;
+    font-size: 1em;
+    font-weight: bold;
+    color: white;
+  }
+
+  section.main-section-box section.destination-container div.destination-box h4.destination-title span.post-label {
+    text-transform: uppercase;
+    margin-right: 10px;
+  }
+
+  section.main-section-box section.destination-container div.destination-box img.destination-image {
+    margin: 10px;
+    width: 250px;
+    border: 2px solid darkgray;
+    border-radius: 10px;
+    box-shadow: 12px 10px 10px -8px;
+  }
+
+  section.main-section-box section.destination-container div.destination-box button.destination-link {
+    margin: 10px;
+    padding: 10px;
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    color: #ffffff;
+    border-radius: 10px;
+    background: rgba(48, 48, 48, 0.9);
+  }
+
+  section.main-section-box section.destination-container div.destination-box button.destination-link:hover {
+    border: 3px solid #555;
+    border-radius: 15px;
+  }
+
+  section.main-section-box section.destination-container div.destination-box button.destination-link:hover:active {
+    box-shadow: 5px 2px 9px -3px #00d9ff;
+  }
+}
+
+@media screen and (max-width: 820px) {
+  section.main-section-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    bottom: 0;
+    border-radius: 25px;
+  }
+
+  section.main-section-box section.company-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+  }
+
+  section.main-section-box section.company-info-container article.company-info-articles {
+    text-align: center;
+  }
+
+  section.main-section-box section.company-info-container article.company-info-articles h1.main-title {
+    margin: 0 0 20px 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.7em;
+    color: white;
+  }
+
+  section.main-section-box section.company-info-container article.company-info-articles h3.second-title {
+    margin: 0 0 20px 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 2em;
+    color: white;
+  }
+
+  section.main-section-box section.company-info-container img.company-image {
+    width: 80%;
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 12px 10px 10px -8px;
+    margin: 0 0 20px 0;
+  }
+
+  section.main-section-box section.company-info-container p.company-describe {
+    text-align: justify;
+    max-width: 50%;
+  }
+
+  section.main-section-box section.destination-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    align-self: center;
+    min-height: 550px;
+    width: 50%;
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.2), rgba(156, 156, 156, 0.07));
+    backdrop-filter: blur(2px);
+    border-radius: 25px;
+    box-shadow: 12px 10px 10px -8px;
+  }
+
+  section.main-section-box section.destination-container h2.destination-container-title {
+    margin: 20px 0 0 0;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    color: #ffffff;
+    text-align: center;
+    flex-basis: 80%;
+  }
+
+  section.main-section-box section.destination-container div.destination-box {
+    text-align: center;
+    width: 90%;
+    background: #5f5f5f;
+    border-radius: 25px;
+  }
+
+  section.main-section-box section.destination-container div.destination-box:hover {
+    box-shadow: 5px 2px 9px -3px #00d9ff;
+  }
+
+  section.main-section-box section.destination-container div.destination-box:active {
+    box-shadow: 5px 2px 9px -3px #00ffbb;
+  }
+
+  section.main-section-box section.destination-container div.destination-box h2.destination-title {
+    margin: 10px;
+    text-transform: capitalize;
+    font-weight: bold;
+    color: white;
+    font-size: 1em;
+  }
+
+  section.main-section-box section.destination-container div.destination-box h2.destination-title span.post-label {
+    text-transform: uppercase;
+    margin-right: 10px;
+  }
+
+  section.main-section-box section.destination-container div.destination-box h4.destination-title {
+    margin: 10px;
+    text-transform: capitalize;
+    font-size: 1em;
+    font-weight: bold;
+    color: white;
+  }
+
+  section.main-section-box section.destination-container div.destination-box h4.destination-title span.post-label {
+    text-transform: uppercase;
+    margin-right: 10px;
+  }
+
+  section.main-section-box section.destination-container div.destination-box img.destination-image {
+    margin: 10px;
+    width: 85%;
+    border: 2px solid darkgray;
+    border-radius: 10px;
+    box-shadow: 12px 10px 10px -8px;
+  }
+
+  section.main-section-box section.destination-container div.destination-box button.destination-link {
+    margin: 10px;
+    padding: 10px;
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    color: #ffffff;
+    border-radius: 10px;
+    background: rgba(48, 48, 48, 0.9);
+  }
+
+  section.main-section-box section.destination-container div.destination-box button.destination-link:hover {
+    border: 3px solid #555;
+    border-radius: 15px;
+  }
+
+  section.main-section-box section.destination-container div.destination-box button.destination-link:hover:active {
+    box-shadow: 5px 2px 9px -3px #00d9ff;
+  }
+}
