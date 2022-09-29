@@ -27,4 +27,4 @@ Every buyer can buy only once from current currency. After that the button will 
 
 # The application third part packages
 
-For creation of this application and for its completely work, I have been used a few libraries, like: bcrypt, cookie-parser, express,handlebars, jsonwebtoken and mongoose
+For creation of this application and for its completely work, I have been used a few libraries, like: bcrypt, cookie-parser, express,handlebars, jsonwebtoken and mongoose. 
