@@ -1,3 +1,17 @@
+# Getting Started with go to terminal
+
+\*Please, before we start be sure that your "Local Storage" is empty/clear, thank you!
+
+1. Open terminal in "client" directory and write - "npm i" + enter;
+
+   With this command you will install all package you need to run this application.
+
+2. You must have "MongoDb" installed on your device.
+
+   This application save all data to this database.
+
+3. Open terminal in 'client' directory and write - 'npm start';
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -39,32 +53,19 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+# Application information
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Before running this application you must install MongoDB on your computer!
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+It's a "React" application witch work with server and DataBase (MongoDb).
 
-### Code Splitting
+This is an application for share, recommending and telling about your fishing trip and stories.
+In the client part, you can register, if you successfully fill all fields for that.
+After registration, you can create and share destinations for fishing and camping.
+Every registered user can also comment on every single post on the site (the number of comments is not restricted).
+Every registered (and logged) user can also like comments.
+Every owner can edit or delete his posts.
+On the home page, you can see the latest three posts.
+Every logged user can also inspect his posts on the page for that ('My Posts").
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+All information in this application is saved in DataBase (MongoDB).
