@@ -1,0 +1,17 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "description": "It's a standard math calculator. You can use simple math functions on it, like: \"Sum\", \"Divide\", \"Multiply\", \"Subtract\";\r You also can take a square of a number and \"work\" with it, and reverse the number from positive to negative or opposite, decimal mark is also available.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run lite",
+    "lite": "lite-server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}
