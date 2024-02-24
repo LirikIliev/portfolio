@@ -1,14 +1,22 @@
-const switchButton = document.querySelector('body main.main-section section.calculator-body section.button-section aside.optional-buttons nav.checkbox-navigation label.switch input.slider');
-const cssFileName = document.querySelectorAll('link');
-const switchNameTitle = document.querySelector('body main section.button-section aside.optional-buttons nav.checkbox-navigation span.slider-text')
+const switchButton = document.getElementById("reverse_theme");
+const switchNameTitle = document.getElementById('theme_title');
 switchButton.addEventListener('click', switchThemeColor);
 
-function switchThemeColor(e) {
-    if (e.target.checked) {
+const cssFileName = document.querySelectorAll('link');
+
+const themeNames = {
+    white: 'Switch to white theme',
+    dark: 'Switch to dark theme'
+};
+
+function switchThemeColor(event) {
+    const hasChecked = event.target.checked;
+    if (hasChecked) {
         cssFileName[1].href = 'http://127.0.0.1:5500/public/css/white/white.css';
-        switchNameTitle.textContent = 'Switch to dark theme';
-    } else {
-        cssFileName[1].href = 'http://127.0.0.1:5500/public/css/dark/dark.css';
-        switchNameTitle.textContent = 'Switch to white theme';
-    };
+        switchNameTitle.textContent = themeNames.dark;
+        return
+    }
+
+    cssFileName[1].href = 'http://127.0.0.1:5500/public/css/dark/dark.css';
+    switchNameTitle.textContent = themeNames.white;
 };
