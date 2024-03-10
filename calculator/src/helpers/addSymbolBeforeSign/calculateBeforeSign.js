@@ -1,65 +1,8 @@
-import { signs, numbers } from '../../config.js';
-import {
-  action,
-  calculateSum,
-  printResult,
-} from '../../methods/auxiliaryFunctions.js';
+import { signs } from '../../config.js';
 
-const textAreaSelect = document.querySelector('textarea#textarea-screen');
-
-const availableDigit = ({ firstDigit, textAreaValue, sum }) => {
-  firstDigit = action['±'](firstDigit);
-  textAreaValue.pop();
-  textAreaValue.push(firstDigit);
-  sum = calculateSum(textAreaValue);
-  printResult(textAreaValue, true, sum, textAreaSelect);
-
-  return { firstDigit, textAreaValue };
-};
-
-const digitAndValueSquareRoot = ({
-  sign,
-  firstDigit,
-  digitSquareRoot,
-  textAreaValue,
-  sum,
-  value,
-}) => {
-  if (!sign && !firstDigit && !digitSquareRoot) {
-    firstDigit += value;
-    textAreaValue.push(value);
-    printResult(textAreaValue, false, sum, textAreaSelect);
-  } else if (value !== signs['√'] && !sign && digitSquareRoot) {
-    firstDigit += value;
-    textAreaValue.pop();
-    textAreaValue.push(firstDigit);
-    sum = calculateSum(textAreaValue);
-    printResult(textAreaValue, true, sum, textAreaSelect);
-  }
-
-  return {
-    firstDigit,
-    textAreaValue,
-  };
-};
-
-const addFirstDigit = ({ firstDigit, value, hasDot }) => {
-  const hasValue = firstDigit?.length > 0;
-  const isValueNull = value === numbers[0];
-  const isValueDot = value === signs['.'];
-
-  if (isValueNull && !hasValue) {
-    return (firstDigit = '');
-  }
-
-  if (isValueNull && hasValue) {
-    return (firstDigit += value);
-  } else if (isValueDot && hasValue && !hasDot) {
-    return (firstDigit += value);
-  }
-
-  return (firstDigit += value);
-};
+import { addValue } from './extractedFunctionality/addValue.js';
+import { minusPlus } from './extractedFunctionality/minusPlus.js';
+import { squareRoot } from './extractedFunctionality/squareRoot.js';
 
 export const calculateBeforeSign = ({
   value,
@@ -76,7 +19,7 @@ export const calculateBeforeSign = ({
 
   const hasDot = firstDigit?.toString()?.includes('.');
   if (value === signs['±']) {
-    const updatedValues = availableDigit({
+    const updatedValues = minusPlus({
       firstDigit,
       textAreaValue,
       sum,
@@ -84,7 +27,7 @@ export const calculateBeforeSign = ({
     firstDigit = updatedValues.firstDigit;
     textAreaValue = updatedValues.textAreaValue;
   } else if (valueSquareRoot || hasDigitNotIncludesSquare) {
-    const digitAndValueSquare = digitAndValueSquareRoot({
+    const digitAndValueSquare = squareRoot({
       sign,
       firstDigit,
       digitSquareRoot: hasDigitNotIncludesSquare,
@@ -95,7 +38,7 @@ export const calculateBeforeSign = ({
     firstDigit = digitAndValueSquare.firstDigit;
     textAreaValue = digitAndValueSquare.textAreaValue;
   } else if (!hacDigitIncludesPercent) {
-    firstDigit = addFirstDigit({ firstDigit, value, hasDot });
+    firstDigit = addValue({ firstDigit, value, hasDot });
   }
   textAreaValue.pop();
   textAreaValue.push(firstDigit);
