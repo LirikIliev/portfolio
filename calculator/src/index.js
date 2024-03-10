@@ -32,8 +32,7 @@ const textAreaValue = [];
 function calculate(e) {
   e.preventDefault();
   const value = e.target.getAttribute('value');
-
-  const isSignCouldAdd = !!(signs[value] && firstDigit);
+  const isSignCouldAdd = !!(value !== signs['.'] && signs[value] && firstDigit);
 
   if (valueCheckObject[value]) {
     // it's a part of code who handle first and next values after signs.
