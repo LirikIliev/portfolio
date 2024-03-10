@@ -3,7 +3,7 @@ import {
   calculateSum,
   printResult,
 } from './methods/auxiliaryFunctions.js';
-import { numbers, signs } from './config.js';
+import { signs, calculationSigns, calculatorValues } from './config.js';
 import { calculateAfterSign } from './helpers/addSymbolAfterSign/calculateAfterSign.js';
 import { calculateBeforeSign } from './helpers/addSymbolBeforeSign/calculateBeforeSign.js';
 import { addSign } from './helpers/addMathSigns/addMathSigns.js';
@@ -12,12 +12,6 @@ const textAreaSelect = document.querySelector('textarea#textarea-screen');
 const buttonBoxSelects = document.querySelectorAll(
   'nav#buttons div.calc-button'
 );
-
-const valueCheckObject = {
-  ...numbers,
-  '±': signs['±'],
-  '√': signs['√'],
-};
 
 Array.from(buttonBoxSelects).forEach((button) =>
   button.addEventListener('click', calculate)
@@ -29,12 +23,12 @@ let sum = 0;
 let sign = '';
 const textAreaValue = [];
 
-function calculate(e) {
-  e.preventDefault();
-  const value = e.target.getAttribute('value');
-  const isSignCouldAdd = !!(value !== signs['.'] && signs[value] && firstDigit);
+function calculate(event) {
+  event.preventDefault();
+  const value = event.target.getAttribute('value');
+  const isSignCouldAdd = !!(calculationSigns[value] && firstDigit);
 
-  if (valueCheckObject[value]) {
+  if (calculatorValues[value]) {
     // it's a part of code who handle first and next values after signs.
     if (sign) {
       const symbolsAfterSign = calculateAfterSign({
