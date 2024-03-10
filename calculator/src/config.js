@@ -12,11 +12,11 @@ export const numbers = {
 };
 
 export const signs = {
-  '±': '±',
   '+': '+',
   '-': '-',
   x: 'x',
   '÷': '÷',
+  '±': '±',
   '√': '√',
   '%': '%',
   '.': '.',
@@ -25,4 +25,17 @@ export const signs = {
 export const reversedSigns = {
   '-': signs['+'],
   '+': signs['-'],
+};
+
+export const calculationSigns = {
+  '+': signs['+'],
+  '-': signs['-'],
+  x: signs.x,
+  '÷': signs['÷'],
+};
+
+export const calculatorValues = {
+  ...numbers,
+  '±': signs['±'],
+  '√': signs['√'],
 };
