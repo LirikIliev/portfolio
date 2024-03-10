@@ -1,3 +1,7 @@
+export const textAreaSelect = document.querySelector(
+  'textarea#textarea-screen'
+);
+
 export const numbers = {
   1: '1',
   2: '2',
