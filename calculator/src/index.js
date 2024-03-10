@@ -2,11 +2,11 @@ import {
   isInt,
   calculateSum,
   printResult,
-} from './methods/auxiliaryFunctions.js';
+} from './utils/auxiliaryFunctions.js';
 import { signs, calculationSigns, calculatorValues } from './config.js';
-import { calculateAfterSign } from './helpers/addSymbolAfterSign/calculateAfterSign.js';
-import { calculateBeforeSign } from './helpers/addSymbolBeforeSign/calculateBeforeSign.js';
-import { addSign } from './helpers/addMathSigns/addMathSigns.js';
+import { calculateAfterSign } from './methods/addSymbolAfterSign/calculateAfterSign.js';
+import { calculateBeforeSign } from './methods/addSymbolBeforeSign/calculateBeforeSign.js';
+import { addSign } from './helpers/addMathSigns.js';
 
 const textAreaSelect = document.querySelector('textarea#textarea-screen');
 const buttonBoxSelects = document.querySelectorAll(
