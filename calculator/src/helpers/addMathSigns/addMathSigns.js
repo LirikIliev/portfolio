@@ -6,29 +6,30 @@ export const addSign = ({
   value,
   firstDigit,
   secondDigit,
-  newSign,
+  currentSign,
   sum,
 }) => {
   const lastTextAreaIndex = textAreaValue.length - 1;
   const lastValueOfTextArea = textAreaValue[lastTextAreaIndex];
   const isLastValueASign = !!signs[lastValueOfTextArea];
 
-  const hasNoSign = sign !== newSign && !isLastValueASign;
-  const hasSignChanged = sign !== newSign && isLastValueASign;
   const isSignMushBePushedToTextarea =
+    sign !== currentSign && !isLastValueASign;
+  const hasSignChanged = sign !== currentSign && isLastValueASign;
+  const hasNoSign =
     (!sign && !isLastValueASign) || (signs[value] && !isLastValueASign);
 
-  if (isSignMushBePushedToTextarea) {
-    sign = newSign;
+  if (hasNoSign) {
+    sign = currentSign;
     textAreaValue.push(value);
     secondDigit = '';
-  } else if (hasNoSign) {
-    sign = newSign;
+  } else if (isSignMushBePushedToTextarea) {
+    sign = currentSign;
     textAreaValue.pop();
     textAreaValue.push(value);
   } else if (hasSignChanged) {
-    sign = newSign;
-    textAreaValue.splice(lastTextAreaIndex, 1, newSign);
+    sign = currentSign;
+    textAreaValue.splice(lastTextAreaIndex, 1, currentSign);
     firstDigit = Number(sum);
     secondDigit = '';
   }
