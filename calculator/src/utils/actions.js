@@ -1,28 +1,19 @@
 import { signs } from '../config.js';
 
-const sumSigns = {
-  ...signs['√'],
-  ...signs['%'],
-};
-
 export function sum(sum1, sum2) {
-  let result = sum1 + sum2;
-  return result;
+  return sum1 + sum2;
 }
 
 export function subtract(sum1, sum2) {
-  let result = sum1 - sum2;
-  return result;
+  return sum1 - sum2;
 }
 
 export function multiply(sum1, sum2) {
-  let result = sum1 * sum2;
-  return result;
+  return sum1 * sum2;
 }
 
 export function divide(sum1, sum2) {
-  let result = sum1 / sum2;
-  return result;
+  return sum1 / sum2;
 }
 
 export function firstDigitPercent(sum) {
