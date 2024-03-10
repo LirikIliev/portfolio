@@ -3,12 +3,17 @@ import {
   calculateSum,
   printResult,
 } from './utils/auxiliaryFunctions.js';
-import { signs, calculationSigns, calculatorValues } from './config.js';
+import {
+  signs,
+  calculationSigns,
+  calculatorValues,
+  textAreaSelect,
+} from './config.js';
 import { calculateAfterSign } from './methods/addSymbolAfterSign/calculateAfterSign.js';
 import { calculateBeforeSign } from './methods/addSymbolBeforeSign/calculateBeforeSign.js';
 import { addSign } from './helpers/addMathSigns.js';
+import { deleteSymbolsToFirstSign } from './methods/deleteSymbolsToFirstSign/deleteSymbolsToFirstSign.js';
 
-const textAreaSelect = document.querySelector('textarea#textarea-screen');
 const buttonBoxSelects = document.querySelectorAll(
   'nav#buttons div.calc-button'
 );
@@ -65,87 +70,17 @@ function calculate(event) {
     firstDigit = addMinusSign?.firstDigit;
     secondDigit = addMinusSign?.secondDigit;
   } else if (value === 'DEL') {
-    if (textAreaValue.length >= 2) {
-      if (
-        Number(textAreaValue[textAreaValue.length - 1]) ||
-        textAreaValue[textAreaValue.length - 1].includes('0.') ||
-        textAreaValue[textAreaValue.length - 1].includes('0') ||
-        textAreaValue[textAreaValue.length - 1].includes('√') ||
-        textAreaValue[textAreaValue.length - 1].includes('%')
-      ) {
-        sign = textAreaValue[textAreaValue.length - 2];
-        let lastNumber = textAreaValue[textAreaValue.length - 1].toString();
-        if (Number(textAreaValue[textAreaValue.length - 1]) < 0) {
-          if (lastNumber.length > 2) {
-            textAreaValue[textAreaValue.length - 1] =
-              textAreaValue[textAreaValue.length - 1].toString();
-            textAreaValue[textAreaValue.length - 1] =
-              textAreaValue[textAreaValue.length - 1].split('');
-            textAreaValue[textAreaValue.length - 1].pop();
-            textAreaValue[textAreaValue.length - 1] =
-              textAreaValue[textAreaValue.length - 1].join('');
-            sum = calculateSum(textAreaValue);
-            secondDigit = textAreaValue[textAreaValue.length - 1];
-            printResult(textAreaValue, true, sum, textAreaSelect);
-          } else {
-            textAreaValue.pop();
-            sum = calculateSum(textAreaValue);
-            secondDigit = '';
-            printResult(textAreaValue, true, sum, textAreaSelect);
-          }
-        } else {
-          if (textAreaValue[textAreaValue.length - 1].length > 1) {
-            textAreaValue[textAreaValue.length - 1] =
-              textAreaValue[textAreaValue.length - 1].split('');
-            textAreaValue[textAreaValue.length - 1].pop();
-            textAreaValue[textAreaValue.length - 1] =
-              textAreaValue[textAreaValue.length - 1].join('');
-            sum = calculateSum(textAreaValue);
-            secondDigit = textAreaValue[textAreaValue.length - 1];
-            textAreaSelect.value = `${textAreaValue.join('')} \r\n${sum}`;
-          } else {
-            textAreaValue.pop();
-            textAreaSelect.value = `${textAreaValue.join('')} \r\n${sum}`;
-            sum = calculateSum(textAreaValue);
-            firstDigit = sum;
-            secondDigit = '';
-            printResult(textAreaValue, true, sum, textAreaSelect);
-          }
-        }
-      } else {
-        textAreaValue.pop();
-        sign = '';
-        printResult(textAreaValue, true, sum, textAreaSelect);
-      }
-    } else {
-      if (textAreaValue.length == 1) {
-        if (textAreaValue[0].length > 1 || Number(textAreaValue[0]) < 0) {
-          if (Number(textAreaValue[0]) < 0) {
-            let splittedLastNumber = textAreaValue[0].toString().split('');
-            splittedLastNumber.pop();
-            splittedLastNumber = splittedLastNumber.join('');
-            textAreaValue[0] = splittedLastNumber;
-            textAreaSelect.value = `${splittedLastNumber}`;
-            firstDigit = Number(splittedLastNumber);
-            sum = Number(splittedLastNumber);
-          } else {
-            let splittedLastNumber = textAreaValue[0].split('');
-            splittedLastNumber.pop();
-            splittedLastNumber = splittedLastNumber.join('');
-            textAreaValue[0] = splittedLastNumber;
-            textAreaSelect.value = `${splittedLastNumber}`;
-            firstDigit = splittedLastNumber;
-            sum = Number(splittedLastNumber);
-          }
-        } else {
-          textAreaValue.pop();
-          textAreaSelect.value = '';
-          firstDigit = '';
-          sum = 0;
-        }
-      }
-    }
-    return;
+    const deleteLeftSymbols = deleteSymbolsToFirstSign({
+      textAreaValue,
+      sign,
+      sum,
+      secondDigit,
+      firstDigit,
+    });
+    sign = deleteLeftSymbols.sign;
+    sum = deleteLeftSymbols.sum;
+    secondDigit = deleteLeftSymbols.secondDigit;
+    firstDigit = deleteLeftSymbols.firstDigit;
   } else if (value == '=') {
     if (firstDigit && sign && secondDigit) {
       sum = calculateSum(textAreaValue);
