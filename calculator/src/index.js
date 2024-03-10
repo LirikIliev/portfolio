@@ -33,6 +33,8 @@ function calculate(e) {
   e.preventDefault();
   const value = e.target.getAttribute('value');
 
+  const isSignCouldAdd = !!(signs[value] && firstDigit);
+
   if (valueCheckObject[value]) {
     // it's a part of code who handle first and next values after signs.
     if (sign) {
@@ -55,10 +57,7 @@ function calculate(e) {
       firstDigit = symbolsBeforeSign?.firstDigit;
       sign = symbolsBeforeSign?.sign;
     }
-  } else if (
-    (value == '+' && firstDigit) ||
-    (value == '+' && firstDigit === 0)
-  ) {
+  } else if (isSignCouldAdd) {
     // it's a part of code who respond for math signs.
     const addMinusSign = addSign({
       sign,
@@ -66,55 +65,7 @@ function calculate(e) {
       value,
       firstDigit,
       secondDigit,
-      currentSign: signs['+'],
-      sum,
-    });
-    sign = addMinusSign?.sign;
-    firstDigit = addMinusSign?.firstDigit;
-    secondDigit = addMinusSign?.secondDigit;
-  } else if (
-    (value == '-' && firstDigit) ||
-    (value == '-' && firstDigit === 0)
-  ) {
-    const addMinusSign = addSign({
-      sign,
-      textAreaValue,
-      value,
-      firstDigit,
-      secondDigit,
-      currentSign: signs['-'],
-      sum,
-    });
-    sign = addMinusSign?.sign;
-    firstDigit = addMinusSign?.firstDigit;
-    secondDigit = addMinusSign?.secondDigit;
-  } else if (
-    (value == 'x' && firstDigit) ||
-    (value == 'x' && firstDigit === 0)
-  ) {
-    const addMinusSign = addSign({
-      sign,
-      textAreaValue,
-      value,
-      firstDigit,
-      secondDigit,
-      currentSign: signs['x'],
-      sum,
-    });
-    sign = addMinusSign?.sign;
-    firstDigit = addMinusSign?.firstDigit;
-    secondDigit = addMinusSign?.secondDigit;
-  } else if (
-    (value == '÷' && firstDigit) ||
-    (value == '÷' && firstDigit === 0)
-  ) {
-    const addMinusSign = addSign({
-      sign,
-      textAreaValue,
-      value,
-      firstDigit,
-      secondDigit,
-      currentSign: signs['%'],
+      currentSign: signs[value],
       sum,
     });
     sign = addMinusSign?.sign;
