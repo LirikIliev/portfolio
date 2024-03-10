@@ -32,7 +32,7 @@ const textAreaValue = [];
 function calculate(e) {
   e.preventDefault();
   const value = e.target.getAttribute('value');
-  const isValueAndSignAvailable = !!(signs[value] && firstDigit);
+
   if (valueCheckObject[value]) {
     // it's a part of code who handle first and next values after signs.
     if (sign) {
@@ -56,34 +56,33 @@ function calculate(e) {
       sign = symbolsBeforeSign?.sign;
     }
   } else if (
-    // it's a part of code who respond for math signs.
-    isValueAndSignAvailable
+    (value == '+' && firstDigit) ||
+    (value == '+' && firstDigit === 0)
   ) {
-    const newSign = signs['+'];
+    // it's a part of code who respond for math signs.
     const addMinusSign = addSign({
       sign,
       textAreaValue,
       value,
       firstDigit,
       secondDigit,
-      newSign,
+      currentSign: signs['+'],
       sum,
     });
     sign = addMinusSign?.sign;
     firstDigit = addMinusSign?.firstDigit;
     secondDigit = addMinusSign?.secondDigit;
   } else if (
-    (value === '-' && firstDigit) ||
-    (value === '-' && firstDigit === 0)
+    (value == '-' && firstDigit) ||
+    (value == '-' && firstDigit === 0)
   ) {
-    const newSign = signs['-'];
     const addMinusSign = addSign({
       sign,
       textAreaValue,
       value,
       firstDigit,
       secondDigit,
-      newSign,
+      currentSign: signs['-'],
       sum,
     });
     sign = addMinusSign?.sign;
@@ -93,42 +92,34 @@ function calculate(e) {
     (value == 'x' && firstDigit) ||
     (value == 'x' && firstDigit === 0)
   ) {
-    if (!sign) {
-      sign = 'x';
-      textAreaValue.push(value);
-    } else if (
-      sign !== 'x' &&
-      !Number(textAreaValue[textAreaValue.length - 1])
-    ) {
-      sign = 'x';
-      textAreaValue.pop();
-      textAreaValue.push(value);
-    } else if (Number(textAreaValue[textAreaValue.length - 1])) {
-      sign = 'x';
-      textAreaValue.push(value);
-      firstDigit = Number(sum);
-      secondDigit = '';
-    }
+    const addMinusSign = addSign({
+      sign,
+      textAreaValue,
+      value,
+      firstDigit,
+      secondDigit,
+      currentSign: signs['x'],
+      sum,
+    });
+    sign = addMinusSign?.sign;
+    firstDigit = addMinusSign?.firstDigit;
+    secondDigit = addMinusSign?.secondDigit;
   } else if (
     (value == '÷' && firstDigit) ||
     (value == '÷' && firstDigit === 0)
   ) {
-    if (!sign) {
-      sign = '÷';
-      textAreaValue.push(value);
-    } else if (
-      sign != '÷' &&
-      !Number(textAreaValue[textAreaValue.length - 1])
-    ) {
-      sign = '÷';
-      textAreaValue.pop();
-      textAreaValue.push(value);
-    } else if (Number(textAreaValue[textAreaValue.length - 1])) {
-      sign = '÷';
-      textAreaValue.push(value);
-      firstDigit = Number(sum);
-      secondDigit = '';
-    }
+    const addMinusSign = addSign({
+      sign,
+      textAreaValue,
+      value,
+      firstDigit,
+      secondDigit,
+      currentSign: signs['%'],
+      sum,
+    });
+    sign = addMinusSign?.sign;
+    firstDigit = addMinusSign?.firstDigit;
+    secondDigit = addMinusSign?.secondDigit;
   } else if (value === 'DEL') {
     if (textAreaValue.length >= 2) {
       if (
