@@ -11,8 +11,8 @@ import {
 } from './config.js';
 import { calculateAfterSign } from './methods/addSymbolAfterSign/calculateAfterSign.js';
 import { calculateBeforeSign } from './methods/addSymbolBeforeSign/calculateBeforeSign.js';
+import { deleteFunctionality } from './methods/deleteSymbolsToFirstSign/deleteSymbolsToFirstSign.js';
 import { addSign } from './helpers/addMathSigns.js';
-import { deleteSymbolsToFirstSign } from './methods/deleteSymbolsToFirstSign/deleteSymbolsToFirstSign.js';
 
 const buttonBoxSelects = document.querySelectorAll(
   'nav#buttons div.calc-button'
@@ -70,7 +70,7 @@ function calculate(event) {
     firstDigit = addMinusSign?.firstDigit;
     secondDigit = addMinusSign?.secondDigit;
   } else if (value === 'DEL') {
-    const deleteLeftSymbols = deleteSymbolsToFirstSign({
+    const deleteLeftSymbols = deleteFunctionality({
       textAreaValue,
       sign,
       sum,
@@ -81,7 +81,7 @@ function calculate(event) {
     sum = deleteLeftSymbols.sum;
     secondDigit = deleteLeftSymbols.secondDigit;
     firstDigit = deleteLeftSymbols.firstDigit;
-  } else if (value == '=') {
+  } else if (value === '=') {
     if (firstDigit && sign && secondDigit) {
       sum = calculateSum(textAreaValue);
       firstDigit = sum;
@@ -94,7 +94,7 @@ function calculate(event) {
       printResult(textAreaValue, false, sum, textAreaSelect);
     }
     return;
-  } else if (value == '%') {
+  } else if (value === '%') {
     if (
       (!sign && Number(textAreaValue[textAreaValue.length - 1])) ||
       (!sign &&
