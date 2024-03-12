@@ -12,7 +12,7 @@ export const action = {
 };
 
 export function isInt(value) {
-  // var regexp = /(^\d+.$)||(^\.\d+$)||(^\d+$)||(^\d+\.\d+$)/g;
+  // const regexp = /(^\d+.$)||(^\.\d+$)||(^\d+$)||(^\d+\.\d+$)/g;
   if (value) {
     if (value.toString().includes('%') || value.toString().includes('√')) {
       if (value.toString().includes('√')) {
@@ -101,3 +101,20 @@ export function printResult(array, truthy, sum, selectedElement) {
     selectedElement.value = `${array.join('')}`;
   }
 }
+
+export const checkForSymbol = (data, symbols) => {
+  if (
+    Array.isArray(symbols) &&
+    symbols?.length > 0 &&
+    typeof data === 'string'
+  ) {
+    for (const symbol of symbols) {
+      const hasSymbolIncluded = data?.includes(symbol);
+      if (hasSymbolIncluded) return true;
+    }
+    return false;
+  }
+};
+
+export const checkIsNumber = (value) =>
+  typeof Number(value) === 'number' && !isNaN(Number(value));
