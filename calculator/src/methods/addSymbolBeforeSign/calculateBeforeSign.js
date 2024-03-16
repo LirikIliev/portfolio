@@ -16,9 +16,10 @@ export const calculateBeforeSign = ({
     ?.toString()
     ?.includes(signs['%']);
   const valueSquareRoot = value === signs['√'];
+  const valuePlusMinus = value === signs['±'];
 
   const hasDot = firstDigit?.toString()?.includes('.');
-  if (value === signs['±']) {
+  if (valuePlusMinus) {
     const updatedValues = minusPlus({
       firstDigit,
       textAreaValue,
