@@ -49,6 +49,7 @@ export const clearEveryNextValueOfCalculator = ({
   const value = textAreaValue[textAreaValue?.length - 1];
   const isValueNumber = checkIsNumber(value);
   const hasSymbolIncluded = checkForSymbol(value, symbolsToCheck);
+
   if (isValueNumber || hasSymbolIncluded) {
     const symbolsAndNumbersReducer = reduceSymbolsAndNumbers({
       sum,
