@@ -1,3 +1,4 @@
+import { signs } from '../config.js';
 import * as actions from './actions.js';
 
 export const action = {
@@ -13,8 +14,12 @@ export const action = {
 
 export function isInt(value) {
   // const regexp = /(^\d+.$)||(^\.\d+$)||(^\d+$)||(^\d+\.\d+$)/g;
+
+  const hasValueIncludesPercent = checkForSymbol(value, [signs['%']]);
+  const hasValueIncludesSquare = checkForSymbol(value, [signs['√']]);
+
   if (value) {
-    if (value.toString().includes('%') || value.toString().includes('√')) {
+    if (hasValueIncludesPercent || hasValueIncludesSquare) {
       if (value.toString().includes('√')) {
         value = value.split('');
         value.shift();
@@ -27,6 +32,7 @@ export function isInt(value) {
       }
     }
   }
+
   if (!value || !value.toString().includes('.')) {
     return true;
   } else {
