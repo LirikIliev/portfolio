@@ -1,18 +1,12 @@
-import {
-  isInt,
-  calculateSum,
-  printResult,
-} from './utils/auxiliaryFunctions.js';
-import {
-  signs,
-  calculationSigns,
-  calculatorValues,
-  textAreaSelect,
-} from './config.js';
+import { signs, calculationSigns, calculatorValues } from './config.js';
 import { calculateAfterSign } from './methods/addSymbolAfterSign/calculateAfterSign.js';
 import { calculateBeforeSign } from './methods/addSymbolBeforeSign/calculateBeforeSign.js';
 import { deleteFunctionality } from './methods/deleteSymbolsToFirstSign/deleteSymbolsToFirstSign.js';
 import { addSign } from './helpers/addMathSigns.js';
+import { addEqualSign } from './methods/addEqualSign/addEqualSign.js';
+import { addPercent } from './methods/addPercent/addPercent.js';
+import { addPeriod } from './methods/addPeriod/addPeriod.js';
+import { sumUpdate } from './methods/sumUpdate/sumUpdate.js';
 
 const buttonBoxSelects = document.querySelectorAll(
   'nav#buttons div.calc-button'
@@ -34,7 +28,7 @@ function calculate(event) {
   const isSignCouldAdd = !!(calculationSigns[value] && firstDigit);
 
   if (calculatorValues[value]) {
-    // it's a part of code who handle first and next values after signs.
+    // it's a part of code who handle values after signs.
     if (sign) {
       const symbolsAfterSign = calculateAfterSign({
         value,
@@ -45,6 +39,7 @@ function calculate(event) {
       secondDigit = symbolsAfterSign.secondDigit;
       sign = symbolsAfterSign.sign;
     } else {
+      // it's a part of code who handle values before signs.
       const symbolsBeforeSign = calculateBeforeSign({
         value,
         firstDigit,
@@ -77,103 +72,45 @@ function calculate(event) {
       secondDigit,
       firstDigit,
     });
-    sign = deleteLeftSymbols.sign;
-    sum = deleteLeftSymbols.sum;
-    secondDigit = deleteLeftSymbols.secondDigit;
-    firstDigit = deleteLeftSymbols.firstDigit;
+    sign = deleteLeftSymbols?.sign;
+    sum = deleteLeftSymbols?.sum;
+    secondDigit = deleteLeftSymbols?.secondDigit;
+    firstDigit = deleteLeftSymbols?.firstDigit;
   } else if (value === '=') {
-    if (firstDigit && sign && secondDigit) {
-      sum = calculateSum(textAreaValue);
-      firstDigit = sum;
-      secondDigit = '';
-      sign = '';
-      while (textAreaValue.length > 0) {
-        textAreaValue.pop();
-      }
-      textAreaValue.push(firstDigit);
-      printResult(textAreaValue, false, sum, textAreaSelect);
-    }
-    return;
+    const equalResults = addEqualSign({
+      sum,
+      firstDigit,
+      secondDigit,
+      sign,
+      textAreaValue,
+    });
+    sum = equalResults?.sum;
+    firstDigit = equalResults?.firstDigit;
+    secondDigit = equalResults?.secondDigit;
+    sign = equalResults?.sign;
   } else if (value === '%') {
-    if (
-      (!sign && Number(textAreaValue[textAreaValue.length - 1])) ||
-      (!sign &&
-        textAreaValue[textAreaValue.length - 1] &&
-        textAreaValue[textAreaValue.length - 1].includes('√') &&
-        textAreaValue[textAreaValue.length - 1].length > 1 &&
-        !textAreaValue[textAreaValue.length - 1].toString().includes('%'))
-    ) {
-      firstDigit += value;
-      textAreaValue[textAreaValue.length - 1] += value;
-    } else if (
-      (sign && Number(textAreaValue[textAreaValue.length - 1])) ||
-      (sign &&
-        textAreaValue[textAreaValue.length - 1].includes('√') &&
-        textAreaValue[textAreaValue.length - 1].length > 1 &&
-        !textAreaValue[textAreaValue.length - 1].toString().includes('%'))
-    ) {
-      textAreaValue[textAreaValue.length - 1] += value;
-      sum = calculateSum(textAreaValue);
-      secondDigit += value;
-      firstDigit = sum;
-    }
-  } else if (value == '.') {
-    if (
-      !secondDigit &&
-      !sign &&
-      isInt(textAreaValue[textAreaValue.length - 1]) &&
-      !firstDigit.toString().includes('%')
-    ) {
-      if (firstDigit == '0' && value != '.') {
-        firstDigit = value;
-        textAreaValue[textAreaValue.length - 1] += value;
-      } else if (!firstDigit && value == '.') {
-        firstDigit = `${0}.`;
-        if (textAreaValue.length > 0) {
-          textAreaValue[textAreaValue.length - 1] += value;
-        } else {
-          textAreaValue[0] = '0.';
-        }
-      } else if (
-        value != '0' ||
-        Number(firstDigit) > 0 ||
-        !firstDigit.toString().includes('.')
-      ) {
-        firstDigit += value;
-        textAreaValue[textAreaValue.length - 1] += value;
-      }
-    } else if (
-      secondDigit &&
-      sign &&
-      isInt(textAreaValue[textAreaValue.length - 1]) &&
-      !secondDigit.toString().includes('%')
-    ) {
-      if (secondDigit == '0' && value != '.') {
-        secondDigit = value;
-        textAreaValue[textAreaValue.length - 1] += value;
-      } else if (!secondDigit && value == '.') {
-        secondDigit = `${0}.`;
-        if (textAreaValue.length > 0) {
-          textAreaValue[textAreaValue.length - 1] += value;
-        } else {
-          textAreaValue[0] = '0.';
-        }
-      } else if (
-        value != '0' ||
-        Number(secondDigit) > 0 ||
-        !secondDigit.toString().includes('.')
-      ) {
-        secondDigit += value;
-        textAreaValue[textAreaValue.length - 1] += value;
-      }
-    }
+    const percent = addPercent({
+      sign,
+      textAreaValue,
+      firstDigit,
+      secondDigit,
+      sum,
+      value,
+    });
+    sum = percent.sum;
+    firstDigit = percent.firstDigit;
+    secondDigit = percent.secondDigit;
+  } else if (value === '.') {
+    const period = addPeriod({
+      firstDigit,
+      secondDigit,
+      textAreaValue,
+      value,
+      sign,
+    });
+    firstDigit = period.firstDigit;
+    secondDigit = period.secondDigit;
   }
 
-  if (secondDigit) {
-    sum = calculateSum(textAreaValue);
-    printResult(textAreaValue, true, sum, textAreaSelect);
-  } else {
-    sum = calculateSum(textAreaValue);
-    printResult(textAreaValue, true, sum, textAreaSelect);
-  }
+  sumUpdate({ textAreaValue, isSecondDigit: true, sum });
 }
