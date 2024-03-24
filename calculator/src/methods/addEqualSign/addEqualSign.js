@@ -1,32 +1,23 @@
-import { textAreaSelect } from '../../config.js';
+import { textAreaValue, valuesObject } from '../../config.js';
 import { calculateSum, printResult } from '../../utils/auxiliaryFunctions.js';
 
-export const addEqualSign = ({
-  sum,
-  firstDigit,
-  secondDigit,
-  sign,
-  textAreaValue,
-}) => {
-  const isAllPropertiesAvailable = !!firstDigit && !!sign && !!secondDigit;
+export const addEqualSign = () => {
+  const isAllPropertiesAvailable =
+    !!valuesObject.firstDigit &&
+    !!valuesObject.sign &&
+    !!valuesObject.secondDigit;
 
   if (isAllPropertiesAvailable) {
-    sum = calculateSum(textAreaValue);
-    firstDigit = sum;
-    secondDigit = '';
-    sign = '';
+    valuesObject.sum = calculateSum(textAreaValue);
+    valuesObject.firstDigit = valuesObject.sum;
+    valuesObject.secondDigit = '';
+    valuesObject.sign = '';
+
     while (textAreaValue?.length > 0) {
       textAreaValue.pop();
     }
-    textAreaValue.push(firstDigit);
-    printResult(textAreaValue, false, sum, textAreaSelect);
-
-    return {
-      sum,
-      firstDigit,
-      secondDigit,
-      sign,
-    };
+    textAreaValue.push(valuesObject.firstDigit);
+    printResult({ truthy: false });
   }
 
   return;
