@@ -1,68 +1,60 @@
-import { signs } from '../../config.js';
+import { ZERO_DOT, signs, textAreaValue, valuesObject } from '../../config.js';
 import {
   checkForSymbol,
   checkIsNumber,
   isInt,
 } from '../../utils/auxiliaryFunctions.js';
 
-const ZERO_POINT = '0.';
-
-const addPeriodInCaseOfNoValue = ({ sum, hasLength, textAreaValue, value }) => {
+const addPeriodInCaseOfNoValue = () => {
   const hasTextAreaLength = !!textAreaValue?.length > 0;
   const lastIndex = hasTextAreaLength ? textAreaValue.length : 0;
 
-  const hasSumLength = !!sum?.length > 0;
-  const internalValue = hasSumLength ? textAreaValue[lastIndex] : ZERO_POINT;
+  const hasSumLength = !!valuesObject.sum?.length > 0;
+  const internalValue = hasSumLength ? textAreaValue[lastIndex] : ZERO_DOT;
 
   textAreaValue[lastIndex] = internalValue;
-  sum = internalValue;
-
-  return sum;
+  valuesObject.sum = internalValue;
 };
 
-const addDecimalToTheSum = ({ sum, value, textAreaValue }) => {
-  const isSumAvailable = !!sum;
-  const isSumNumber = checkIsNumber(sum);
-  const hasSumLength = sum?.length > 0;
-  const isSumEqualToZero = isSumAvailable && isSumNumber && Number(sum) === 0;
-  const isSumBiggerThenZero = isSumAvailable && isSumNumber && Number(sum) > 0;
-  const isSumIncludesPeriod = checkForSymbol(sum, [signs['.']]);
+const addDecimalToTheSum = (value, valueToUpdate) => {
+  const isSumAvailable = !!valuesObject.sum;
+  const isSumNumber = checkIsNumber(valuesObject.sum);
+  const isSumEqualToZero =
+    isSumAvailable && isSumNumber && Number(valuesObject.sum) === 0;
+  const isSumBiggerThenZero =
+    isSumAvailable && isSumNumber && Number(valuesObject.sum) > 0;
+  const isSumIncludesPeriod = checkForSymbol(valuesObject.sum, [signs['.']]);
   const isValueDifferentFromPeriod = value !== signs['.'];
-  const isValueDifferentFromZeroPeriod = value !== ZERO_POINT;
+  const isValueDifferentFromZeroPeriod = value !== ZERO_DOT;
 
   if (isSumEqualToZero && isValueDifferentFromPeriod) {
-    sum = value;
+    valuesObject.sum = value;
     textAreaValue[textAreaValue.length - 1] += value;
   } else if (!isSumAvailable && !isValueDifferentFromPeriod) {
-    sum = addPeriodInCaseOfNoValue({
-      hasLength: hasSumLength,
-      textAreaValue,
-      value,
-    });
+    addPeriodInCaseOfNoValue();
   } else if (
     isValueDifferentFromZeroPeriod ||
     isSumBiggerThenZero ||
     (isSumAvailable && !isSumIncludesPeriod)
   ) {
-    sum += value;
+    !isSumIncludesPeriod ? (valuesObject.sum += value) : null;
     textAreaValue[textAreaValue.length - 1] += value;
   }
 
-  return sum;
+  valuesObject[valueToUpdate] += value;
 };
 
-export const addPeriod = ({
-  firstDigit,
-  secondDigit,
-  textAreaValue,
-  value,
-  sign,
-}) => {
-  const isSignAvailable = !!sign;
-  const isFirstDigitIncludesPercent = checkForSymbol(firstDigit, [signs['%']]);
+export const addPeriod = () => {
+  const value = valuesObject.eventValue;
+  const isSignAvailable = !!valuesObject.sign;
+  const isFirstDigitIncludesPercent = checkForSymbol(valuesObject.firstDigit, [
+    signs['%'],
+  ]);
 
-  const isSecondDigitAvailable = !!secondDigit;
-  const isSecondDigitIncludePercent = checkForSymbol(secondDigit, signs['%']);
+  const isSecondDigitAvailable = !!valuesObject.secondDigit;
+  const isSecondDigitIncludePercent = checkForSymbol(valuesObject.secondDigit, [
+    signs['%'],
+  ]);
 
   const isTextareaInteger = isInt(textAreaValue[textAreaValue.length - 1]);
 
@@ -72,21 +64,12 @@ export const addPeriod = ({
     isTextareaInteger &&
     !isFirstDigitIncludesPercent
   ) {
-    firstDigit = addDecimalToTheSum({ sum: firstDigit, value, textAreaValue });
+    addDecimalToTheSum(value, 'firstDigit');
   } else if (
     isSignAvailable &&
     isTextareaInteger &&
     !isSecondDigitIncludePercent
   ) {
-    secondDigit = addDecimalToTheSum({
-      sum: secondDigit,
-      value,
-      textAreaValue,
-    });
+    addDecimalToTheSum(value, 'secondDigit');
   }
-
-  return {
-    firstDigit,
-    secondDigit,
-  };
 };
