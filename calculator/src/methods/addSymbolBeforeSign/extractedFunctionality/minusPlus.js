@@ -1,17 +1,14 @@
+import { textAreaValue, valuesObject } from '../../../config.js';
 import {
   action,
   calculateSum,
   printResult,
 } from '../../../utils/auxiliaryFunctions.js';
 
-const textAreaSelect = document.querySelector('textarea#textarea-screen');
-
-export const minusPlus = ({ firstDigit, textAreaValue, sum }) => {
-  firstDigit = action['±'](firstDigit);
+export const minusPlus = () => {
+  valuesObject.firstDigit = action['±'](valuesObject.firstDigit);
   textAreaValue.pop();
-  textAreaValue.push(firstDigit);
-  sum = calculateSum(textAreaValue);
-  printResult(textAreaValue, true, sum, textAreaSelect);
-
-  return { firstDigit, textAreaValue };
+  textAreaValue.push(valuesObject.firstDigit);
+  valuesObject.sum = calculateSum(textAreaValue);
+  printResult({ truthy: true });
 };
