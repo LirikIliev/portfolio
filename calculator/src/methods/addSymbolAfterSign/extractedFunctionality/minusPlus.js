@@ -1,17 +1,20 @@
-import { reversedSigns, signs } from '../../../config.js';
-import { action } from '../../../utils/auxiliaryFunctions.js';
+import {
+  reversedSigns,
+  signs,
+  textAreaValue,
+  valuesObject,
+} from '../../../config.js';
 
-export const addMinusPlus = ({ sign, textAreaValue, secondDigit }) => {
-  const isSignPositiveOrNegative = sign === signs['+'] || sign === signs['-'];
+export const addMinusPlus = () => {
+  const isSignPositiveOrNegative =
+    valuesObject.sign === signs['+'] || valuesObject.sign === signs['-'];
   const isSignProperForMinusPlusLogic =
-    sign !== signs['-'] && sign !== signs['+'];
+    valuesObject.sign !== signs['-'] && valuesObject.sign !== signs['+'];
   if (isSignPositiveOrNegative) {
-    sign = reversedSigns[sign];
-    textAreaValue.splice(textAreaValue.length - 2, 1, sign);
+    valuesObject.sign = reversedSigns[valuesObject.sign];
+    textAreaValue.splice(textAreaValue.length - 2, 1, valuesObject.sign);
   } else if (isSignProperForMinusPlusLogic) {
-    secondDigit = action['±'](secondDigit);
-    textAreaValue.splice(textAreaValue.length - 1, 1, secondDigit);
+    valuesObject.secondDigit = signs['±'](valuesObject.secondDigit);
+    textAreaValue.splice(textAreaValue.length - 1, 1, valuesObject.secondDigit);
   }
-
-  return { sign, secondDigit, textAreaValue };
 };
