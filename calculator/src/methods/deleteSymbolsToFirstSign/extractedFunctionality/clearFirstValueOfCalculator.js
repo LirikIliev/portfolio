@@ -1,41 +1,39 @@
-import { signs, textAreaSelect } from '../../../config.js';
+import { signs, textAreaValue, valuesObject } from '../../../config.js';
 import {
   checkForSymbol,
-  checkIsNumber,
+  printResult,
 } from '../../../utils/auxiliaryFunctions.js';
 
-export const clearFirstValueOfCalculator = ({
-  textAreaValue,
-  sum,
-  firstDigit,
-}) => {
-  const value = textAreaValue?.[0];
-  const isValueNumber = checkIsNumber(value);
-  const isLengthPositive = textAreaValue[0]?.length > 1;
-  const isNumberBiggerThenOne = isValueNumber ? value > 1 : false;
-  const isValueLengthLongerThenOne = isLengthPositive || isNumberBiggerThenOne;
+export const clearFirstValueOfCalculator = () => {
+  const index = textAreaValue.length - 1;
+  const value = textAreaValue[index];
+  const hasValueLength = !!value?.length;
 
-  if (isValueLengthLongerThenOne) {
-    const isValueNegative = isValueNumber && value <= 0;
-    const hasDoubleInputValuesRemove =
-      checkForSymbol(value, [signs['√']]) || isValueNegative;
-    const isValueLengthTwo = value.length === 2;
-    const numberToSlice =
-      hasDoubleInputValuesRemove && isValueLengthTwo ? -2 : -1;
-    const newValue = value?.slice(0, numberToSlice);
-    textAreaValue[0] = newValue;
-    textAreaSelect.value = `${newValue}`;
-    firstDigit = newValue;
-    sum = Number(newValue);
-  } else {
-    textAreaValue.pop();
-    textAreaSelect.value = '';
-    firstDigit = '';
-    sum = 0;
+  const isValueLengthOne = hasValueLength && value.length === 1;
+  const isValueLengthTwo = hasValueLength && value.length === 2;
+
+  if (!hasValueLength) {
+    return;
   }
 
-  return {
-    firstDigit,
-    sum,
-  };
+  const isValueSquareOrMinusPlus = checkForSymbol(value, [
+    signs['√'],
+    signs['±'],
+  ]);
+
+  const hasDeleteAllValue = isValueLengthTwo && isValueSquareOrMinusPlus;
+  const hasClearAllIndex = !!isValueLengthOne;
+  if (hasClearAllIndex) {
+    textAreaValue.pop();
+  } else if (hasDeleteAllValue) {
+    textAreaValue.splice(index, 1);
+  } else if (hasValueLength) {
+    valuesObject.firstDigit = textAreaValue[index].slice(0, -1);
+    textAreaValue[index] = valuesObject.firstDigit;
+    return;
+  }
+
+  valuesObject.firstDigit = '';
+  valuesObject.sum = '';
+  printResult();
 };
