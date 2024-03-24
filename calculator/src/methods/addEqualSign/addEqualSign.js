@@ -9,7 +9,7 @@ export const addEqualSign = () => {
 
   if (isAllPropertiesAvailable) {
     valuesObject.sum = calculateSum(textAreaValue);
-    valuesObject.firstDigit = valuesObject.sum;
+    valuesObject.firstDigit = valuesObject.sum.toString();
     valuesObject.secondDigit = '';
     valuesObject.sign = '';
 
