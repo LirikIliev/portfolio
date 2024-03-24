@@ -1,28 +1,23 @@
-import { signs } from '../../config.js';
+import { signs, textAreaValue, valuesObject } from '../../config.js';
 import {
   calculateSum,
   checkForSymbol,
   checkIsNumber,
 } from '../../utils/auxiliaryFunctions.js';
 
-export const addPercent = ({
-  sign,
-  textAreaValue,
-  firstDigit,
-  secondDigit,
-  sum,
-  value,
-}) => {
+export const addPercent = () => {
+  const value = valuesObject.eventValue;
   const textareaValue = textAreaValue[textAreaValue?.length - 1];
   const isValueNumber = checkIsNumber(textareaValue);
 
-  const isSignAvailable = !!sign;
+  const isSignAvailable = !!valuesObject.sign;
   const isTextareaLengthBiggerThenOne = textAreaValue
     ? textareaValue?.length > 1
     : false;
   const isSquareAvailableInTextarea = checkForSymbol(textareaValue, [
     signs['√'],
   ]);
+
   const isPercentNotAvailableInTextarea =
     checkForSymbol(textareaValue, [signs['%']]) === false;
 
@@ -52,18 +47,12 @@ export const addPercent = ({
     isSignAndValuesAvailableAndIncludesSymbols;
 
   if (hasPercentBeAddedToFirstAmountOfDigits) {
-    firstDigit += value;
+    valuesObject.firstDigit += value;
     textAreaValue[textAreaValue.length - 1] += value;
   } else if (hasPercentBeAddedToLastAmountOfDigits) {
     textAreaValue[textAreaValue.length - 1] += value;
-    sum = calculateSum(textAreaValue);
-    secondDigit += value;
-    firstDigit = sum;
+    valuesObject.sum = calculateSum(textAreaValue);
+    valuesObject.secondDigit += value;
+    valuesObject.firstDigit = valuesObject.sum;
   }
-
-  return {
-    sum,
-    firstDigit,
-    secondDigit,
-  };
 };
