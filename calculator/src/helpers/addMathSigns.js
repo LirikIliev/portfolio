@@ -1,42 +1,30 @@
-import { signs } from '../config.js';
+import { signs, textAreaValue, valuesObject } from '../config.js';
 
-export const addSign = ({
-  sign,
-  textAreaValue,
-  value,
-  firstDigit,
-  secondDigit,
-  currentSign,
-  sum,
-}) => {
+export const addSign = (currentSign) => {
+  const value = valuesObject.eventValue;
   const lastTextAreaIndex = textAreaValue.length - 1;
   const lastValueOfTextArea = textAreaValue[lastTextAreaIndex];
   const isLastValueASign = !!signs[lastValueOfTextArea];
 
   const isSignMushBePushedToTextarea =
-    sign !== currentSign && !isLastValueASign;
-  const hasSignChanged = sign !== currentSign && isLastValueASign;
+    valuesObject.sign !== currentSign && !isLastValueASign;
+  const hasSignChanged = valuesObject.sign !== currentSign && isLastValueASign;
   const hasNoSign =
-    (!sign && !isLastValueASign) || (signs[value] && !isLastValueASign);
+    (!valuesObject.sign && !isLastValueASign) ||
+    (signs[value] && !isLastValueASign);
 
   if (hasNoSign) {
-    sign = currentSign;
+    valuesObject.sign = currentSign;
     textAreaValue.push(value);
-    secondDigit = '';
+    valuesObject.secondDigit = '';
   } else if (isSignMushBePushedToTextarea) {
-    sign = currentSign;
+    valuesObject.sign = currentSign;
     textAreaValue.pop();
     textAreaValue.push(value);
   } else if (hasSignChanged) {
-    sign = currentSign;
+    valuesObject.sign = currentSign;
     textAreaValue.splice(lastTextAreaIndex, 1, currentSign);
-    firstDigit = Number(sum);
-    secondDigit = '';
+    valuesObject.firstDigit = Number(valuesObject.sum);
+    valuesObject.secondDigit = '';
   }
-
-  return {
-    sign,
-    firstDigit,
-    secondDigit,
-  };
 };
