@@ -70,7 +70,6 @@ function calcReverse(sum) {
 }
 
 const digitRegex = /\d+\.?/g;
-
 export function reverse(sum) {
   let stringSum = sum.toString();
   const isSumIncludesSigns =
