@@ -1,40 +1,12 @@
+import { textAreaValue } from '../../config.js';
 import { clearEveryNextValueOfCalculator } from './extractedFunctionality/clearEveryNextValueOfCalculator.js';
 import { clearFirstValueOfCalculator } from './extractedFunctionality/clearFirstValueOfCalculator.js';
 
-export const deleteFunctionality = ({
-  textAreaValue,
-  sign,
-  sum,
-  secondDigit,
-  firstDigit,
-}) => {
+export const deleteFunctionality = () => {
   const isValueLongLength = textAreaValue?.length >= 2;
   if (isValueLongLength) {
-    const deleteEveryNextValueOfCalculator = clearEveryNextValueOfCalculator({
-      sign,
-      textAreaValue,
-      secondDigit,
-      sum,
-      firstDigit,
-    });
-    sum = deleteEveryNextValueOfCalculator.sum;
-    firstDigit = deleteEveryNextValueOfCalculator.firstDigit;
-    secondDigit = deleteEveryNextValueOfCalculator.secondDigit;
-    sign = deleteEveryNextValueOfCalculator.sign;
+    clearEveryNextValueOfCalculator();
   } else {
-    const deleteFirstValueOfCalculator = clearFirstValueOfCalculator({
-      textAreaValue,
-      firstDigit,
-      sum,
-    });
-    firstDigit = deleteFirstValueOfCalculator.firstDigit;
-    sum = deleteFirstValueOfCalculator.sum;
+    clearFirstValueOfCalculator();
   }
-
-  return {
-    sign,
-    sum,
-    secondDigit,
-    firstDigit,
-  };
 };
