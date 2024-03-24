@@ -1,51 +1,36 @@
-import { signs } from '../../config.js';
+import { signs, textAreaValue, valuesObject } from '../../config.js';
+import { checkForSymbol } from '../../utils/auxiliaryFunctions.js';
 
 import { addValue } from './extractedFunctionality/addValue.js';
 import { minusPlus } from './extractedFunctionality/minusPlus.js';
 import { squareRoot } from './extractedFunctionality/squareRoot.js';
 
-export const calculateBeforeSign = ({
-  value,
-  firstDigit,
-  sign,
-  textAreaValue,
-  sum,
-}) => {
-  const hasDigitNotIncludesSquare = !!firstDigit?.toString()?.includes('√');
-  const hacDigitIncludesPercent = !!firstDigit
+export const calculateBeforeSign = () => {
+  const value = valuesObject.eventValue;
+  const hasDigitNotIncludesSquare = !!valuesObject.firstDigit
+    ?.toString()
+    ?.includes('√');
+  const hacDigitIncludesPercent = !!valuesObject.firstDigit
     ?.toString()
     ?.includes(signs['%']);
   const valueSquareRoot = value === signs['√'];
   const valuePlusMinus = value === signs['±'];
+  const hasDot = checkForSymbol(textAreaValue, [signs['.']]);
 
-  const hasDot = firstDigit?.toString()?.includes('.');
   if (valuePlusMinus) {
-    const updatedValues = minusPlus({
-      firstDigit,
-      textAreaValue,
-      sum,
-    });
-    firstDigit = updatedValues.firstDigit;
-    textAreaValue = updatedValues.textAreaValue;
+    minusPlus();
   } else if (valueSquareRoot || hasDigitNotIncludesSquare) {
-    const digitAndValueSquare = squareRoot({
-      sign,
-      firstDigit,
+    squareRoot({
       digitSquareRoot: hasDigitNotIncludesSquare,
-      textAreaValue,
-      sum,
       value,
     });
-    firstDigit = digitAndValueSquare.firstDigit;
-    textAreaValue = digitAndValueSquare.textAreaValue;
   } else if (!hacDigitIncludesPercent) {
-    firstDigit = addValue({ firstDigit, value, hasDot });
+    addValue({
+      value,
+      hasDot,
+    });
   }
-  textAreaValue.pop();
-  textAreaValue.push(firstDigit);
 
-  return {
-    firstDigit,
-    sign,
-  };
+  textAreaValue.pop();
+  textAreaValue.push(valuesObject.firstDigit);
 };
