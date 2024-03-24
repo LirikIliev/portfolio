@@ -1,9 +1,16 @@
-import { numbers, signs } from '../../../config.js';
+import {
+  numbers,
+  signs,
+  textAreaValue,
+  valuesObject,
+} from '../../../config.js';
 
-export const addValue = ({ value, secondDigit, textAreaValue }) => {
-  const hasDigitContainPoint = secondDigit?.toString()?.includes(signs['.']);
-  const hasDigitHasSomeLength = secondDigit?.length > 0;
-  const isDigitBiggerThenZero = Number(secondDigit) > 0;
+export const addValue = (value) => {
+  const hasDigitContainPoint = valuesObject.secondDigit
+    ?.toString()
+    ?.includes(signs['.']);
+  const hasDigitHasSomeLength = valuesObject.secondDigit?.length > 0;
+  const isDigitBiggerThenZero = Number(valuesObject.secondDigit) > 0;
 
   const isValueZero = value === numbers[0];
   const isValuePoint = value === signs['.'];
@@ -23,9 +30,9 @@ export const addValue = ({ value, secondDigit, textAreaValue }) => {
     valueCouldBeSign;
 
   if (isValueCouldBeSign) {
-    secondDigit += value;
+    valuesObject.secondDigit += value;
   } else if (isDigitBiggerThenZero && !hasDigitContainPoint && isValuePoint) {
-    secondDigit += value;
+    valuesObject.secondDigit += value;
   }
 
   const lastIndexOfTextArea = textAreaValue.length - 1;
@@ -39,16 +46,11 @@ export const addValue = ({ value, secondDigit, textAreaValue }) => {
   const hapPushToTextarea =
     isLastValueOfTextAreaSign && !isTextAreaIncludesSquare;
 
-  const secondDigitString = secondDigit?.toString();
+  const secondDigitString = valuesObject.secondDigit?.toString();
 
   if (hapPushToTextarea) {
     textAreaValue.push(secondDigitString);
   } else {
-    textAreaValue[lastIndexOfTextArea] = secondDigit;
+    textAreaValue[lastIndexOfTextArea] = valuesObject.secondDigit;
   }
-
-  return {
-    secondDigit,
-    textAreaValue,
-  };
 };
