@@ -1,4 +1,4 @@
-import { signs } from '../../../config.js';
+import { signs, textAreaValue, valuesObject } from '../../../config.js';
 import {
   calculateSum,
   printResult,
@@ -6,28 +6,16 @@ import {
 
 const textAreaSelect = document.querySelector('textarea#textarea-screen');
 
-export const squareRoot = ({
-  sign,
-  firstDigit,
-  digitSquareRoot,
-  textAreaValue,
-  sum,
-  value,
-}) => {
-  if (!sign && !firstDigit && !digitSquareRoot) {
-    firstDigit += value;
+export const squareRoot = ({ digitSquareRoot, value }) => {
+  if (!valuesObject.sign && !valuesObject.firstDigit && !digitSquareRoot) {
+    valuesObject.firstDigit += value;
     textAreaValue.push(value);
-    printResult(textAreaValue, false, sum, textAreaSelect);
-  } else if (value !== signs['√'] && !sign && digitSquareRoot) {
-    firstDigit += value;
+    printResult();
+  } else if (value !== signs['√'] && !valuesObject.sign && digitSquareRoot) {
+    valuesObject.firstDigit += value;
     textAreaValue.pop();
-    textAreaValue.push(firstDigit);
-    sum = calculateSum(textAreaValue);
-    printResult(textAreaValue, true, sum, textAreaSelect);
+    textAreaValue.push(valuesObject.firstDigit);
+    valuesObject.sum = calculateSum(textAreaValue);
+    printResult();
   }
-
-  return {
-    firstDigit,
-    textAreaValue,
-  };
 };
