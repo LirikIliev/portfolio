@@ -1,26 +1,24 @@
-import { signs } from '../../../config.js';
+import { signs, textAreaValue, valuesObject } from '../../../config.js';
 
-export const addSquareRoot = ({
-  sign,
-  textAreaValue,
-  secondDigit,
-  value,
-  isValueSquare,
-}) => {
-  const isDigitIncludesSquareSign = secondDigit
+export const addSquareRoot = ({ value, isValueSquare }) => {
+  const isDigitIncludesSquareSign = valuesObject.secondDigit
     ?.toString()
     ?.includes(signs['√']);
-  if (isValueSquare && !isDigitIncludesSquareSign && !secondDigit && sign) {
-    secondDigit += value;
+  if (
+    isValueSquare &&
+    !isDigitIncludesSquareSign &&
+    !valuesObject.secondDigit &&
+    valuesObject.sign
+  ) {
+    valuesObject.secondDigit += value;
     textAreaValue.push(value);
-  } else if (secondDigit && isDigitIncludesSquareSign && sign) {
-    secondDigit += value;
+  } else if (
+    valuesObject.secondDigit &&
+    isDigitIncludesSquareSign &&
+    valuesObject.sign
+  ) {
+    valuesObject.secondDigit += value;
     textAreaValue.pop();
-    textAreaValue.push(secondDigit);
+    textAreaValue.push(valuesObject.secondDigit);
   }
-
-  return {
-    secondDigit,
-    textAreaValue,
-  };
 };
