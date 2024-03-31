@@ -27,7 +27,7 @@ const reduceSymbolsAndNumbers = (value) => {
     printResult();
   }
   valuesObject.sign = textAreaValue[singIndex];
-  valuesObject.sum = calculateSum(textAreaValue);
+  calculateSum(textAreaValue);
   textAreaSelect.value = `${textAreaValue.join('')} \r\n${valuesObject.sum}`;
 };
 
