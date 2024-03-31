@@ -7,10 +7,12 @@ import {
 
 const addPeriodInCaseOfNoValue = () => {
   const hasTextAreaLength = !!textAreaValue?.length > 0;
-  const lastIndex = hasTextAreaLength ? textAreaValue.length : 0;
+  const lastIndex = hasTextAreaLength ? textAreaValue.length - 1 : 0;
 
-  const hasSumLength = !!valuesObject.sum?.length > 0;
-  const internalValue = hasSumLength ? textAreaValue[lastIndex] : ZERO_DOT;
+  const isSumBiggerThenZero = !!valuesObject.sum > 0;
+  const internalValue = isSumBiggerThenZero
+    ? textAreaValue[lastIndex]
+    : ZERO_DOT;
 
   textAreaValue[lastIndex] = internalValue;
   valuesObject.sum = internalValue;
@@ -32,6 +34,7 @@ const addDecimalToTheSum = (value, valueToUpdate) => {
     textAreaValue[textAreaValue.length - 1] += value;
   } else if (!isSumAvailable && !isValueDifferentFromPeriod) {
     addPeriodInCaseOfNoValue();
+    valuesObject[valueToUpdate] += ZERO_DOT;
   } else if (
     isValueDifferentFromZeroPeriod ||
     isSumBiggerThenZero ||
@@ -39,9 +42,8 @@ const addDecimalToTheSum = (value, valueToUpdate) => {
   ) {
     !isSumIncludesPeriod ? (valuesObject.sum += value) : null;
     textAreaValue[textAreaValue.length - 1] += value;
+    valuesObject[valueToUpdate] += value;
   }
-
-  valuesObject[valueToUpdate] += value;
 };
 
 export const addPeriod = () => {
