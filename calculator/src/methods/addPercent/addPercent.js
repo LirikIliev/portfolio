@@ -7,52 +7,27 @@ import {
 
 export const addPercent = () => {
   const value = valuesObject.eventValue;
-  const textareaValue = textAreaValue[textAreaValue?.length - 1];
-  const isValueNumber = checkIsNumber(textareaValue);
-
+  const currentValue = textAreaValue?.[textAreaValue?.length - 1];
   const isSignAvailable = !!valuesObject.sign;
-  const isTextareaLengthBiggerThenOne = textAreaValue
-    ? textareaValue?.length > 1
-    : false;
-  const isSquareAvailableInTextarea = checkForSymbol(textareaValue, [
-    signs['√'],
+
+  const hasCurrentValueSquareRoot =
+    currentValue?.length === 1 && checkForSymbol(currentValue, [signs['√']]);
+  const isPercentNotAvailableInTextarea = checkForSymbol(currentValue, [
+    signs['%'],
   ]);
 
-  const isPercentNotAvailableInTextarea =
-    checkForSymbol(textareaValue, [signs['%']]) === false;
+  if (isPercentNotAvailableInTextarea || hasCurrentValueSquareRoot) {
+    return;
+  }
 
-  //add percent in first amount of digit in calculator
-  const isSignNotAvailableAndValueIsNumber = !isSignAvailable && isValueNumber;
-  const hasSignAndTextareaCoversAllRequirements =
-    isSignAvailable &&
-    textareaValue &&
-    isSquareAvailableInTextarea &&
-    isTextareaLengthBiggerThenOne &&
-    isPercentNotAvailableInTextarea;
-
-  const hasPercentBeAddedToFirstAmountOfDigits =
-    isSignNotAvailableAndValueIsNumber ||
-    hasSignAndTextareaCoversAllRequirements;
-
-  //add percent in every next amount of digits
-  const isSignAvailableAndValueIsNumber = isSignAvailable && isValueNumber;
-  const isSignAndValuesAvailableAndIncludesSymbols =
-    !isSignAvailable &&
-    isSquareAvailableInTextarea &&
-    isTextareaLengthBiggerThenOne &&
-    isPercentNotAvailableInTextarea;
-
-  const hasPercentBeAddedToLastAmountOfDigits =
-    isSignAvailableAndValueIsNumber ||
-    isSignAndValuesAvailableAndIncludesSymbols;
+  const hasPercentBeAddedToFirstAmountOfDigits = !isSignAvailable;
 
   if (hasPercentBeAddedToFirstAmountOfDigits) {
     valuesObject.firstDigit += value;
     textAreaValue[textAreaValue.length - 1] += value;
-  } else if (hasPercentBeAddedToLastAmountOfDigits) {
+  } else {
     textAreaValue[textAreaValue.length - 1] += value;
-    valuesObject.sum = calculateSum(textAreaValue);
     valuesObject.secondDigit += value;
-    valuesObject.firstDigit = valuesObject.sum;
+    calculateSum(textAreaValue);
   }
 };
