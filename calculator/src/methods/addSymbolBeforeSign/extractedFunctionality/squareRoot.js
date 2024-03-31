@@ -4,18 +4,24 @@ import {
   printResult,
 } from '../../../utils/auxiliaryFunctions.js';
 
-const textAreaSelect = document.querySelector('textarea#textarea-screen');
-
-export const squareRoot = ({ digitSquareRoot, value }) => {
-  if (!valuesObject.sign && !valuesObject.firstDigit && !digitSquareRoot) {
+export const squareRoot = ({ hasDigitNotIncludesSquare, value }) => {
+  if (
+    !valuesObject.sign &&
+    !valuesObject.firstDigit &&
+    !hasDigitNotIncludesSquare
+  ) {
     valuesObject.firstDigit += value;
     textAreaValue.push(value);
     printResult();
-  } else if (value !== signs['√'] && !valuesObject.sign && digitSquareRoot) {
+  } else if (
+    value !== signs['√'] &&
+    !valuesObject.sign &&
+    hasDigitNotIncludesSquare
+  ) {
     valuesObject.firstDigit += value;
     textAreaValue.pop();
     textAreaValue.push(valuesObject.firstDigit);
-    valuesObject.sum = calculateSum(textAreaValue);
+    calculateSum(textAreaValue);
     printResult();
   }
 };
