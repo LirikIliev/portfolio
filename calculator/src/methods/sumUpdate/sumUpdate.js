@@ -1,7 +1,7 @@
-import { textAreaValue, valuesObject } from '../../config.js';
 import { calculateSum, printResult } from '../../utils/auxiliaryFunctions.js';
+import { textAreaValue } from '../../config.js';
 
 export const sumUpdate = () => {
-  valuesObject.sum = calculateSum(textAreaValue);
+  calculateSum(textAreaValue);
   printResult();
 };
