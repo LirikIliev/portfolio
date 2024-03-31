@@ -1,4 +1,5 @@
-import { signs } from '../config.js';
+import { DIGIT_REGEX, signs } from '../config.js';
+import { checkForSymbol } from './auxiliaryFunctions.js';
 
 export function sum(sum1, sum2) {
   return sum1 + sum2;
@@ -16,48 +17,42 @@ export function divide(sum1, sum2) {
   return sum1 / sum2;
 }
 
-export function firstDigitPercent(sum) {
-  if (sum.toString().includes('√')) {
-    sum = sum.split('');
-    sum.shift();
-    sum = sum.join('');
-
-    if (sum.includes('%')) {
-      sum = sum.split('');
-      sum.pop();
-      sum = sum.join('');
-    }
+export function firstDigitPercent(value) {
+  const hasValueIncludesPercent = checkForSymbol(value, [signs['%']]);
+  const hasValueIncludesSquare = checkForSymbol(value, [signs['√']]);
+  if (hasValueIncludesSquare) {
+    value = value.split('');
+    value.shift();
+    if (hasValueIncludesPercent) value.pop();
+    value = value.join('');
   }
-  let result = Number(sum) / 100;
-  return result;
+
+  return Number(value) / 100;
 }
 
-export function secondDigitPercent(sum1, sum2) {
-  if (sum1.toString().includes('√')) {
-    sum1 = sum1.split('');
-    sum1.shift();
-    sum1 = sum1.join('');
-
-    if (sum1.includes('%')) {
-      sum1 = sum1.split('');
-      sum1.pop();
-      sum1 = sum1.join('');
-    }
+export function secondDigitPercent(firstValue, secondValue) {
+  const hasFirstValueIncludesSquare = checkForSymbol(firstValue, [signs['√']]);
+  const hasFirstValueIncludesPercent = checkForSymbol(firstValue, [signs['%']]);
+  if (hasFirstValueIncludesSquare) {
+    firstValue = firstValue.split('');
+    firstValue.shift();
+    if (hasFirstValueIncludesPercent) firstValue.pop();
+    firstValue = firstValue.join('');
   }
-  if (sum2.toString().includes('√')) {
-    sum2 = sum2.split('');
-    sum2.shift();
-    sum2 = sum2.join('');
-
-    if (sum2.includes('%')) {
-      sum2 = sum2.split('');
-      sum2.pop();
-      sum2 = sum2.join('');
-    }
+  const hasSecondValueIncludesSquare = checkForSymbol(secondValue, [
+    signs['√'],
+  ]);
+  const hasSecondValueIncludesPercent = checkForSymbol(secondValue, [
+    signs['%'],
+  ]);
+  if (hasSecondValueIncludesSquare) {
+    secondValue = secondValue.split('');
+    secondValue.shift();
+    if (hasSecondValueIncludesPercent) secondValue.pop();
+    secondValue = secondValue.join('');
   }
 
-  let result = (Number(sum1) * Number(sum2)) / 100;
-  return result;
+  return (Number(firstValue) * Number(secondValue)) / 100;
 }
 
 export function afterPercent(sum, percent) {
@@ -69,21 +64,24 @@ function calcReverse(sum) {
   return sum > 0 ? (sum = Number(-sum)) : (sum = Math.abs(sum));
 }
 
-const digitRegex = /\d+\.?/g;
-export function reverse(sum) {
-  let stringSum = sum.toString();
-  const isSumIncludesSigns =
-    stringSum?.includes(signs['%']) || stringSum?.includes(signs['√']);
-  if (isSumIncludesSigns) {
-    const matches = stringSum.match(digitRegex);
+export function reverse(value) {
+  let stringSum = value.toString();
+  const hasValueIncludesPercent = checkForSymbol(value, [signs['%']]);
+  const hasValueIncludesSquare = checkForSymbol(value, [signs['√']]);
+
+  if (hasValueIncludesPercent || hasValueIncludesSquare) {
+    const matches = stringSum.match(DIGIT_REGEX);
     const joinedMatches = matches?.join('');
     const numberOfMatch = Number(joinedMatches);
     const revertDigit = matches.length > 0 ? calcReverse(numberOfMatch) : 0;
+    console.log(joinedMatches);
 
-    return sum.replace(joinedMatches, revertDigit);
+    const newValue = value.replace(joinedMatches, revertDigit);
+
+    return value.replace(joinedMatches, revertDigit);
   }
 
-  return calcReverse(Number(sum));
+  return calcReverse(Number(value));
 }
 
 export function squareRoot(sum) {
