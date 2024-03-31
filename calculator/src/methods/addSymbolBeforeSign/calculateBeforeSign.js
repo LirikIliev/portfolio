@@ -7,24 +7,27 @@ import { squareRoot } from './extractedFunctionality/squareRoot.js';
 
 export const calculateBeforeSign = () => {
   const value = valuesObject.eventValue;
-  const hasDigitNotIncludesSquare = !!valuesObject.firstDigit
-    ?.toString()
-    ?.includes('√');
-  const hacDigitIncludesPercent = !!valuesObject.firstDigit
-    ?.toString()
-    ?.includes(signs['%']);
-  const valueSquareRoot = value === signs['√'];
-  const valuePlusMinus = value === signs['±'];
+  const hasDigitNotIncludesSquare = checkForSymbol(valuesObject.firstDigit, [
+    signs['√'],
+  ]);
+  const hasDigitIncludesPercent = checkForSymbol(valuesObject.firstDigit, [
+    signs['%'],
+  ]);
+
+  if (hasDigitIncludesPercent) return;
+
+  const isValueSquareRoot = value === signs['√'];
+  const isValuePlusMinus = value === signs['±'];
   const hasDot = checkForSymbol(textAreaValue, [signs['.']]);
 
-  if (valuePlusMinus) {
+  if (isValuePlusMinus) {
     minusPlus();
-  } else if (valueSquareRoot || hasDigitNotIncludesSquare) {
+  } else if (isValueSquareRoot || hasDigitNotIncludesSquare) {
     squareRoot({
-      digitSquareRoot: hasDigitNotIncludesSquare,
+      hasDigitNotIncludesSquare,
       value,
     });
-  } else if (!hacDigitIncludesPercent) {
+  } else if (!hasDigitIncludesPercent) {
     addValue({
       value,
       hasDot,
