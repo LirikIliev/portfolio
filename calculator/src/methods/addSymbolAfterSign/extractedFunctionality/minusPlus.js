@@ -1,3 +1,4 @@
+import { action } from '../../../utils/auxiliaryFunctions.js';
 import {
   reversedSigns,
   signs,
@@ -14,7 +15,7 @@ export const addMinusPlus = () => {
     valuesObject.sign = reversedSigns[valuesObject.sign];
     textAreaValue.splice(textAreaValue.length - 2, 1, valuesObject.sign);
   } else if (isSignProperForMinusPlusLogic) {
-    valuesObject.secondDigit = signs['±'](valuesObject.secondDigit);
+    valuesObject.secondDigit = action['±'](valuesObject.secondDigit);
     textAreaValue.splice(textAreaValue.length - 1, 1, valuesObject.secondDigit);
   }
 };
