@@ -9,6 +9,6 @@ export const minusPlus = () => {
   valuesObject.firstDigit = action['±'](valuesObject.firstDigit);
   textAreaValue.pop();
   textAreaValue.push(valuesObject.firstDigit);
-  valuesObject.sum = calculateSum(textAreaValue);
+  calculateSum(textAreaValue);
   printResult({ truthy: true });
 };
