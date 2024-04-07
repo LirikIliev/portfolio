@@ -121,9 +121,9 @@ export const checkForSymbol = (data, symbols) => {
 };
 
 // to create better regex for select and extract number
-const numberRegex = /^\d*(\.\d{1,})?$/g;
+const numberRegex = /^-?[0-9]\d*(\.\d+)?$/g;
 export const checkIsNumber = (value) => {
-  const stringValue = value.toString();
+  const stringValue = value?.toString();
   const checkValue = numberRegex.test(stringValue);
   if (checkValue) {
     const match = stringValue.match(numberRegex);
