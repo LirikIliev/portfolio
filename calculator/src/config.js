@@ -1,6 +1,8 @@
-export const textAreaSelect = document.querySelector(
-  'textarea#textarea-screen'
-);
+export let textAreaSelect;
+if (typeof document !== 'undefined') {
+  textAreaSelect = document.querySelector('textarea#textarea-screen');
+}
+
 export const valuesObject = {
   firstDigit: '',
   secondDigit: '',
