@@ -1,63 +1,45 @@
 import { DIGIT_REGEX, signs } from '../config.js';
-import { checkForSymbol } from './auxiliaryFunctions.js';
+import { checkForSymbol, checkIsNumber } from './auxiliaryFunctions.js';
 
 export function sum(sum1, sum2) {
-  return sum1 + sum2;
+  const isSum1Number = checkIsNumber(sum1);
+  const isSum2Number = checkIsNumber(sum2);
+
+  if (isSum1Number && isSum2Number) return Number(sum1) + Number(sum2);
 }
 
 export function subtract(sum1, sum2) {
-  return sum1 - sum2;
+  const isSum1Number = checkIsNumber(sum1);
+  const isSum2Number = checkIsNumber(sum2);
+  if (isSum1Number && isSum2Number) return Number(sum1) - Number(sum2);
 }
 
 export function multiply(sum1, sum2) {
-  return sum1 * sum2;
+  const isSum1Number = checkIsNumber(sum1);
+  const isSum2Number = checkIsNumber(sum2);
+  if (isSum1Number && isSum2Number) return Number(sum1) * Number(sum2);
 }
 
 export function divide(sum1, sum2) {
-  return sum1 / sum2;
+  const isSum1Number = checkIsNumber(sum1);
+  const isSum2Number = checkIsNumber(sum2);
+  if (isSum1Number && isSum2Number) return Number(sum1) / Number(sum2);
 }
 
 export function firstDigitPercent(value) {
-  const hasValueIncludesPercent = checkForSymbol(value, [signs['%']]);
-  const hasValueIncludesSquare = checkForSymbol(value, [signs['√']]);
-  if (hasValueIncludesSquare) {
-    value = value.split('');
-    value.shift();
-    if (hasValueIncludesPercent) value.pop();
-    value = value.join('');
-  }
-
+  if (!value?.length === 0 || !checkIsNumber(value)) return;
   return Number(value) / 100;
 }
 
 export function secondDigitPercent(firstValue, secondValue) {
-  const hasFirstValueIncludesSquare = checkForSymbol(firstValue, [signs['√']]);
-  const hasFirstValueIncludesPercent = checkForSymbol(firstValue, [signs['%']]);
-  if (hasFirstValueIncludesSquare) {
-    firstValue = firstValue.split('');
-    firstValue.shift();
-    if (hasFirstValueIncludesPercent) firstValue.pop();
-    firstValue = firstValue.join('');
-  }
-  const hasSecondValueIncludesSquare = checkForSymbol(secondValue, [
-    signs['√'],
-  ]);
-  const hasSecondValueIncludesPercent = checkForSymbol(secondValue, [
-    signs['%'],
-  ]);
-  if (hasSecondValueIncludesSquare) {
-    secondValue = secondValue.split('');
-    secondValue.shift();
-    if (hasSecondValueIncludesPercent) secondValue.pop();
-    secondValue = secondValue.join('');
-  }
-
+  if (
+    !firstValue?.length === 0 ||
+    !secondValue?.length === 0 ||
+    !checkIsNumber(firstValue) ||
+    !checkIsNumber(secondValue)
+  )
+    return;
   return (Number(firstValue) * Number(secondValue)) / 100;
-}
-
-export function afterPercent(sum, percent) {
-  let result = sum - percent;
-  return result;
 }
 
 function calcReverse(sum) {
@@ -65,7 +47,14 @@ function calcReverse(sum) {
 }
 
 export function reverse(value) {
-  let stringSum = value.toString();
+  if (
+    value === null ||
+    (typeof value !== 'string' && value?.length === 0) ||
+    (typeof value !== 'number' && value?.length === 0)
+  )
+    return undefined;
+
+  let stringSum = value?.toString();
   const hasValueIncludesPercent = checkForSymbol(value, [signs['%']]);
   const hasValueIncludesSquare = checkForSymbol(value, [signs['√']]);
 
@@ -74,19 +63,19 @@ export function reverse(value) {
     const joinedMatches = matches?.join('');
     const numberOfMatch = Number(joinedMatches);
     const revertDigit = matches.length > 0 ? calcReverse(numberOfMatch) : 0;
-    console.log(joinedMatches);
-
-    const newValue = value.replace(joinedMatches, revertDigit);
 
     return value.replace(joinedMatches, revertDigit);
   }
-
   return calcReverse(Number(value));
 }
 
 export function squareRoot(sum) {
-  let result = Math.sqrt(Number(sum.slice(1)));
-  result = result.toString().split('');
-  result = result.join('');
-  return result;
+  if ((sum && typeof sum === 'string') || (sum && typeof sum === 'number')) {
+    const isSquareAvailable = checkForSymbol(sum, [signs['√']]);
+    let result = Math?.sqrt(Number(isSquareAvailable ? sum?.slice(1) : sum));
+    result = result.toString()?.split('');
+    result = result.join('');
+    return result;
+  }
+  return;
 }
