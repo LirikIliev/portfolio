@@ -2,9 +2,10 @@
   "name": "calculator",
   "version": "1.0.0",
   "description": "It's a standard math calculator. You can use simple math functions on it, like: \"Sum\", \"Divide\", \"Multiply\", \"Subtract\";\r You also can take a square of a number and \"work\" with it, and reverse the number from positive to negative or opposite, decimal mark is also available.",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "mocha src/**/*.test.js",
+    "test": "mocha src/tests/*/*.js",
     "start": "npm run lite",
     "lite": "lite-server"
   },
@@ -12,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "chai": "^5.1.0",
     "lite-server": "^2.6.1",
     "prettier": "^3.2.5"
   }
