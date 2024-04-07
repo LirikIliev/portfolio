@@ -13,8 +13,6 @@ import { addEqualSign } from './methods/addEqualSign/addEqualSign.js';
 import { addPercent } from './methods/addPercent/addPercent.js';
 import { addPeriod } from './methods/addPeriod/addPeriod.js';
 import { sumUpdate } from './methods/sumUpdate/sumUpdate.js';
-import { checkIsNumber } from './utils/auxiliaryFunctions.js';
-import { reverse } from './utils/actions.js';
 
 // select every button into the calculator.
 const buttonBoxSelects = document.querySelectorAll(
