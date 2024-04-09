@@ -33,7 +33,7 @@ describe('Test for "add square root to digit" function', function () {
     expect(squareRoot(-0)).to.be.undefined;
   });
 
-  it.only('test with negative values, function inputs', () => {
+  it('test with negative values, function inputs', () => {
     expect(squareRoot('√-124')).to.equal('NaN');
     expect(squareRoot('√-4')).to.equal('NaN');
     expect(squareRoot(-4)).to.equal('NaN');
