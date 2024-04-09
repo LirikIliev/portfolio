@@ -1,7 +1,6 @@
-export let textAreaSelect;
-if (typeof document !== 'undefined') {
-  textAreaSelect = document.querySelector('textarea#textarea-screen');
-}
+export const textAreaSelect = document.querySelector(
+  'textarea#textarea-screen'
+);
 
 export const valuesObject = {
   firstDigit: '',
@@ -11,8 +10,8 @@ export const valuesObject = {
   eventValue: '',
   errors: '',
 };
-export const textAreaValue = [];
 
+export const textAreaValue = [];
 export const DIGIT_REGEX = /-?\d+(\.\d+)?/g;
 export const ZERO_DOT = '0.';
 export const numbers = {
