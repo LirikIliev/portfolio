@@ -19,6 +19,10 @@ export const action = {
 };
 
 export function isInt(value) {
+  const isValueNumber = checkIsNumber(value);
+  if (!isValueNumber) {
+    return NaN;
+  }
   const hasValueIncludesSquare = checkForSymbol(value, [signs['√']]);
   const hasValueIncludesPercent = checkForSymbol(value, [signs['%']]);
 
@@ -33,13 +37,14 @@ export function isInt(value) {
   if (!hasValueIncludesPeriod) {
     return true;
   }
+  return false;
 }
 
 function calculateCurrentSum(symbol, currentValue) {
-  const sumNumber = Number(valuesObject.sum);
-  const currentDigitNumber = Number(currentValue);
+  const sumToNumber = Number(valuesObject.sum);
+  const currentValueToNumber = Number(currentValue);
   if (THE_SUM_SYMBOLS[symbol]) {
-    valuesObject.sum = action[symbol](sumNumber, currentDigitNumber);
+    valuesObject.sum = action[symbol](sumToNumber, currentValueToNumber);
   } else if (!symbol) {
     valuesObject.sum = Number(currentValue);
   }
@@ -107,17 +112,17 @@ export function calculateSum(array) {
 export const printResult = () =>
   (textAreaSelect.value = `${textAreaValue.join('')} \r\n${valuesObject.sum}`);
 
-export const checkForSymbol = (data, symbols) => {
-  const isDataAvailable = !!data;
-  const stringData = data?.toString();
+export const checkForSymbol = (value, symbols) => {
+  const isDataAvailable = !!value;
+  const stringData = value?.toString();
   const isDataString = isDataAvailable ? typeof stringData === 'string' : false;
   if (Array.isArray(symbols) && symbols?.length > 0 && isDataString) {
     for (const symbol of symbols) {
       const hasSymbolIncluded = stringData?.includes(symbol);
       if (hasSymbolIncluded) return true;
     }
-    return false;
   }
+  return false;
 };
 
 // to create better regex for select and extract number
