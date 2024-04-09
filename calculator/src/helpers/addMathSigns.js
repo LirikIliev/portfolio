@@ -1,10 +1,19 @@
-import { signs, textAreaValue, valuesObject } from '../config.js';
+import {
+  calculationSigns,
+  signs,
+  textAreaValue,
+  valuesObject,
+} from '../config.js';
 
 export const addSign = (currentSign) => {
   const value = valuesObject.eventValue;
   const lastTextAreaIndex = textAreaValue.length - 1;
   const lastValueOfTextArea = textAreaValue[lastTextAreaIndex];
   const isLastValueASign = !!signs[lastValueOfTextArea];
+
+  if (!calculationSigns[currentSign]) {
+    return;
+  }
 
   const isSignMushBePushedToTextarea =
     valuesObject.sign !== currentSign && !isLastValueASign;
