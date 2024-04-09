@@ -43,7 +43,7 @@ function calculate(event) {
   event.preventDefault();
   valuesObject.eventValue = event.target.getAttribute('value');
   const isSignCouldAdd =
-    valuesObject.firstDigit && !!calculationSigns[valuesObject.eventValue];
+    !!valuesObject.firstDigit && !!calculationSigns[valuesObject.eventValue];
 
   if (CALCULATOR_VALUES[valuesObject.eventValue]) {
     valueCalculation();
