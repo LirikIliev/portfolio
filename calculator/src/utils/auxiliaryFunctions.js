@@ -21,7 +21,7 @@ export const action = {
 export function isInt(value) {
   const isValueNumber = checkIsNumber(value);
   if (!isValueNumber) {
-    return false;
+    return;
   }
   const hasValueIncludesSquare = checkForSymbol(value, [signs['√']]);
   const hasValueIncludesPercent = checkForSymbol(value, [signs['%']]);
