@@ -1,6 +1,6 @@
 export let textAreaSelect;
 
-if (typeof document !== undefined)
+if (typeof document !== 'undefined')
   textAreaSelect = document.querySelector('textarea#textarea-screen');
 
 export const valuesObject = {
