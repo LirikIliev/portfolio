@@ -41,13 +41,13 @@ describe('isInit function test', function () {
   });
 
   it('Test wit incorrect values!', () => {
-    expect(isInt('test')).to.be.NaN;
-    expect(isInt('')).to.be.NaN;
-    expect(isInt({})).to.be.NaN;
-    expect(isInt([])).to.be.NaN;
-    expect(isInt(false)).to.be.NaN;
-    expect(isInt(null)).to.be.NaN;
-    expect(isInt()).to.be.NaN;
-    expect(isInt('2.2.2')).to.be.NaN;
+    expect(isInt('test')).to.be.undefined;
+    expect(isInt('')).to.be.undefined;
+    expect(isInt({})).to.be.undefined;
+    expect(isInt([])).to.be.undefined;
+    expect(isInt(false)).to.be.undefined;
+    expect(isInt(null)).to.be.undefined;
+    expect(isInt()).to.be.undefined;
+    expect(isInt('2.2.2')).to.be.undefined;
   });
 });
