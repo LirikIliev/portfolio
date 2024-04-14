@@ -49,5 +49,6 @@ describe('isInit function test', function () {
     expect(isInt(null)).to.be.undefined;
     expect(isInt()).to.be.undefined;
     expect(isInt('2.2.2')).to.be.undefined;
+    expect(isInt('√99')).to.be.undefined;
   });
 });
