@@ -5,12 +5,12 @@ import {
   isInt,
 } from '../../utils/auxiliaryFunctions.js';
 
-const addPeriodInCaseOfNoValue = () => {
+const addPeriodInCaseOfNoValue = (valueToUpdate) => {
   const hasTextAreaLength = !!textAreaValue?.length > 0;
-  const lastIndex = hasTextAreaLength ? textAreaValue.length - 1 : 0;
+  const lastIndex = hasTextAreaLength ? textAreaValue.length : 0;
 
-  const isSumBiggerThenZero = !!valuesObject.sum > 0;
-  const internalValue = isSumBiggerThenZero
+  const isUpdatedValueBiggerThenZero = !!valuesObject?.[valueToUpdate] > 0;
+  const internalValue = isUpdatedValueBiggerThenZero
     ? textAreaValue[lastIndex]
     : ZERO_DOT;
 
@@ -19,31 +19,30 @@ const addPeriodInCaseOfNoValue = () => {
 };
 
 const addDecimalToTheSum = (value, valueToUpdate) => {
-  const isSumAvailable = !!valuesObject.sum;
   const isSumNumber = checkIsNumber(valuesObject.sum);
-  const isSumEqualToZero =
-    isSumAvailable && isSumNumber && Number(valuesObject.sum) === 0;
-  const isSumBiggerThenZero =
-    isSumAvailable && isSumNumber && Number(valuesObject.sum) > 0;
+  const isSumEqualToZero = isSumNumber && Number(valuesObject.sum) === 0;
   const isSumIncludesPeriod = checkForSymbol(valuesObject.sum, [signs['.']]);
-  const isValueDifferentFromPeriod = value !== signs['.'];
-  const isValueDifferentFromZeroPeriod = value !== ZERO_DOT;
+  const isValuePeriod = value === signs['.'];
+  const isValueToUpdateEmpty = valuesObject?.[valueToUpdate]?.length === 0;
 
-  if (isSumEqualToZero && isValueDifferentFromPeriod) {
-    valuesObject.sum = value;
-    textAreaValue[textAreaValue.length - 1] += value;
-  } else if (!isSumAvailable && !isValueDifferentFromPeriod) {
-    addPeriodInCaseOfNoValue();
+  if (isValuePeriod && isValueToUpdateEmpty) {
+    addPeriodInCaseOfNoValue(valueToUpdate);
     valuesObject[valueToUpdate] += ZERO_DOT;
-  } else if (
-    isValueDifferentFromZeroPeriod ||
-    isSumBiggerThenZero ||
-    (isSumAvailable && !isSumIncludesPeriod)
-  ) {
+  } else if (!isSumEqualToZero || !isSumIncludesPeriod) {
     !isSumIncludesPeriod ? (valuesObject.sum += value) : null;
     textAreaValue[textAreaValue.length - 1] += value;
     valuesObject[valueToUpdate] += value;
   }
+};
+
+const checkForInteger = (value) => {
+  if (value?.length === 0) return true;
+  const isValueWithSquare = checkForSymbol(value, [signs['√']]);
+  if (isValueWithSquare) {
+    const extractValueFromSquare = value.slice(1);
+    return isInt(extractValueFromSquare);
+  }
+  return isInt(value);
 };
 
 export const addPeriod = () => {
@@ -58,7 +57,9 @@ export const addPeriod = () => {
     signs['%'],
   ]);
 
-  const isTextareaInteger = isInt(textAreaValue[textAreaValue.length - 1]);
+  const isTextareaInteger = isSignAvailable
+    ? checkForInteger(valuesObject.secondDigit)
+    : checkForInteger(valuesObject.firstDigit);
 
   if (
     !isSecondDigitAvailable &&
