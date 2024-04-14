@@ -19,7 +19,7 @@ const reduceSymbolsAndNumbers = (value) => {
 
   if (isValueLongLength) {
     textAreaValue[textAreaValue.length - 1] = value.slice(0, -1);
-    valuesObject.secondDigit = value;
+    valuesObject.secondDigit = value.slice(0, -1);
   } else {
     textAreaValue.pop();
     valuesObject.firstDigit = valuesObject.sum;
@@ -35,8 +35,9 @@ export const clearEveryNextValueOfCalculator = () => {
   const value = textAreaValue[textAreaValue?.length - 1];
   const isValueNumber = checkIsNumber(value);
   const hasSymbolIncluded = checkForSymbol(value, symbolsToCheck);
+  const isLastSymbolPeriod = value?.[value.length - 1] === signs['.'];
 
-  if (isValueNumber || hasSymbolIncluded) {
+  if (isValueNumber || hasSymbolIncluded || isLastSymbolPeriod) {
     reduceSymbolsAndNumbers(value);
   } else {
     textAreaValue.pop();
