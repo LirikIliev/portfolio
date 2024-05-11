@@ -1,0 +1,25 @@
+.Wrapper {
+  display: flex;
+  flex-direction: column;
+
+  text-align: start;
+  color: white;
+  font-size: 1rem;
+  gap: 5px;
+
+  .Title {
+    font-weight: lighter;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+  }
+
+  .Info-title {
+    color: rgb(129, 129, 129);
+  }
+
+  .Info {
+    &:not(.Info-title) {
+      letter-spacing: 1.1px;
+    }
+  }
+}
