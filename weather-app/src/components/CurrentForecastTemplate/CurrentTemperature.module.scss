@@ -1,0 +1,41 @@
+.Wrapper {
+  display: grid;
+  align-items: self-start;
+  grid-template-columns: minmax(min-content, 15%) minmax(max-content, 15%);
+  padding: 0 20px;
+
+  .Forecast-information {
+    grid-row: 1 / -1;
+    align-self: center;
+    color: white;
+    font-size: 1.5rem;
+    text-align: start;
+    text-transform: uppercase;
+
+    .Date-wrapper {
+      font-weight: lighter;
+    }
+
+    .Temperature-wrapper {
+      display: flex;
+      gap: 5px;
+      color: rgb(20, 161, 255);
+    }
+
+    .Sunrise-sunset-wrapper {
+      margin-top: 5px;
+      text-transform: capitalize;
+
+      font-size: 1rem;
+
+      .Sunrise-data,
+      .Sunset-data {
+        margin: 5px 0;
+      }
+
+      .Data-title {
+        color: rgb(129, 129, 129);
+      }
+    }
+  }
+}
