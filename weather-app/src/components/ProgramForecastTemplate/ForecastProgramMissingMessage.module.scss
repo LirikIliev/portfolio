@@ -1,0 +1,13 @@
+.Wrapper {
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  .Text {
+    font-size: 1.2rem;
+    color: white;
+  }
+}
