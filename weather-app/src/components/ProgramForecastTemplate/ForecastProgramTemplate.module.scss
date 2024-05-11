@@ -1,0 +1,42 @@
+$fontColor: rgb(129, 129, 129);
+
+.Wrapper {
+  color: white;
+  text-align: left;
+
+  .TitleWrapper {
+    font-size: 1.2rem;
+
+    .Day {
+      font-weight: lighter;
+      text-transform: uppercase;
+    }
+
+    .Date-in-month {
+      font-weight: lighter;
+      font-size: 1.3rem;
+      color: $fontColor;
+    }
+    margin-bottom: 10px;
+  }
+
+  .BodyWrapper {
+    .Data {
+      padding: 0;
+      margin: 5px 0;
+
+      font-weight: lighter;
+      font-size: 1.1rem;
+      color: $fontColor;
+
+      strong {
+        margin-left: 5px;
+        font-weight: bold;
+        color: white;
+      }
+    }
+  }
+  .IconWrapper {
+    flex: 1;
+  }
+}
