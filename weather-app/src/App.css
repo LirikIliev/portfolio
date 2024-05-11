@@ -1,0 +1,66 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+  background: url('../public/mountains-190055_1920.jpg') no-repeat center center
+    fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-color: rgba(255, 145, 20, 0.2);
+  transition: background-color 1s ease-in-out;
+}
+
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 0px;
+  padding: 0px;
+
+  text-align: center;
+  color: black;
+}
+
+h1,
+h2,
+h3,
+h4,
+ul,
+li,
+div,
+p,
+nav,
+aside,
+section {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+p {
+  margin-top: 0;
+}
+
+a,
+a:visited,
+a:active {
+  text-decoration: none;
+}
+
+.App {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px 0;
+}
