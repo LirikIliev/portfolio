@@ -1,0 +1,54 @@
+.Search_form_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1.2rem;
+  font-weight: bold;
+
+  .Search_inputs_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    input {
+      min-height: 50px;
+      min-width: 20vw;
+      border: 2px solid rgb(87, 86, 86);
+      border-radius: 9px;
+      border: none;
+
+      font-weight: lighter;
+      font-size: 1.5em;
+    }
+
+    .Search_input {
+      outline: none;
+      color: black;
+    }
+
+    .Search_button {
+      height: 100%;
+      padding-left: 20px;
+      border: none;
+      text-align: center;
+      background-color: transparent;
+
+      &:hover .Search_icon {
+        color: green;
+        font-size: 2.5rem;
+      }
+
+      .Search_icon {
+        font-size: 2.5em;
+        color: white;
+      }
+    }
+
+    .Temperature_icon {
+      color: white;
+      font-size: 2.5rem;
+    }
+  }
+}
