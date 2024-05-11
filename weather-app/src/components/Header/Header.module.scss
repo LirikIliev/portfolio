@@ -1,0 +1,44 @@
+.Wrapper {
+  display: flex;
+  width: 100vw;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5%;
+
+  padding: 0 10%;
+
+  .Header {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
+    font-size: 2rem;
+  }
+
+  .Ul-list {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    list-style: none;
+
+    .Location-wrapper {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+  }
+
+  .Temperature-sign-button {
+    display: flex;
+    gap: 5px;
+
+    border: none;
+    font-size: 1.5rem;
+    color: white;
+    background-color: transparent;
+
+    strong.Selected-temperature-sign {
+      color: green;
+    }
+  }
+}
