@@ -1,10 +1,11 @@
 import { dateFromString } from '../../helpers/convertStringToDate';
 import { DailyDataInterface } from '../../types/forecastTypes';
 import Icon from '../../icons/Icon';
-import { WeatherDailyCodes } from '../../helpers/forecastIconCodes';
+import { weatherDailyCodes } from '../../helpers/forecastIconCodes';
 import { useContext, useMemo } from 'react';
 import { TEMPERATURE_TYPE } from '../../helpers/config';
 import { ForecastContext } from '../../context/ForecastContext';
+import { useMobileScreenDetection } from '../../hooks/useMobileScreenDetection';
 
 import classes from './HourlyForecastTemplate.module.scss';
 
@@ -15,6 +16,7 @@ const HourlyForecastTemplate: React.FC<DailyDataInterface> = ({
   const { typeOfTemperature } = useContext(ForecastContext);
   const { weatherCode, temperature, temperatureSign } = values;
   const { hour = '' } = dateFromString(time);
+  const { isMobile } = useMobileScreenDetection();
 
   const hourTemperature = useMemo(
     () =>
@@ -26,21 +28,19 @@ const HourlyForecastTemplate: React.FC<DailyDataInterface> = ({
 
   return (
     <div className={classes['Wrapper']}>
-      <div>
+      <div className={classes['Icon-wrapper']}>
         <Icon
           iconName={
-            WeatherDailyCodes[weatherCode]
-              ? WeatherDailyCodes[weatherCode]
-              : WeatherDailyCodes[0]
+            weatherDailyCodes[weatherCode]
+              ? weatherDailyCodes[weatherCode]
+              : weatherDailyCodes[0]
           }
-          size={80}
+          size={isMobile ? 60 : 80}
           styles={{ gridRow: '1 / -1', alignSelf: 'center' }}
         />
       </div>
-      <div>
+      <div className={classes['Hourly-data-wrapper']}>
         <p>{hour}</p>
-      </div>
-      <div>
         <p>{hourTemperature}</p>
       </div>
     </div>
