@@ -2,7 +2,7 @@ import { ChangeEvent, MouseEvent, useState } from 'react';
 
 import { useFetchForecastProgramAPI } from '../../hooks/useFetchForecastProgramAPI';
 import { useFetchForecastDailyAPI } from '../../hooks/useFetchForecastDailyHourlyAPI';
-
+import { useMobileScreenDetection } from '../../hooks/useMobileScreenDetection';
 import Icon from '../../icons/Icon';
 
 import classes from './LocationSearch.module.scss';
@@ -11,6 +11,7 @@ const LocationSearch: React.FC = () => {
   const [search, setSearch] = useState<Partial<string>>('');
   const { getProgramForecast } = useFetchForecastProgramAPI();
   const { getDailyForecast } = useFetchForecastDailyAPI();
+  const { isMobile } = useMobileScreenDetection();
 
   const onSubmitSearchRequest = (e: MouseEvent) => {
     e.preventDefault();
@@ -27,10 +28,10 @@ const LocationSearch: React.FC = () => {
   return (
     <form className={classes['Search_form_wrapper']}>
       <div className={classes['Search_inputs_wrapper']}>
-        <Icon iconName="Thermometer" size={80} metrics="px" />
+        <Icon iconName="Thermometer" size={isMobile ? 40 : 50} metrics="px" />
         <input
           className={classes['Search_input']}
-          type="text"
+          type="search"
           value={search}
           onChange={onChangeSearchHandler}
         />
@@ -39,7 +40,7 @@ const LocationSearch: React.FC = () => {
           type="submit"
           onClick={onSubmitSearchRequest}
         >
-          <Icon iconName="Search" size={25} />
+          <Icon iconName="Search" size={isMobile ? 20 : 30} metrics="px" />
         </button>
       </div>
     </form>
