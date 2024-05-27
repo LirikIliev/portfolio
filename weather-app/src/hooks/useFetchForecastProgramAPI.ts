@@ -8,8 +8,17 @@ import {
 import { ForecastContext } from '../context/ForecastContext';
 import { convertCelsiusToFahrenheit } from '../helpers/convertCelsiusToFahrenheit';
 import { roundTemperatureValues } from '../helpers/roundTemperatureValues';
-import { TEMPERATURE_COLORS } from '../helpers/config';
+import {
+  TEMPERATURE_COLORS,
+  defaultProgramForecastValues,
+} from '../helpers/config';
 import { weatherUrls, apiKey, acceptQueryParam } from './config';
+
+const defaultErrorValue = {
+  code: 400,
+  type: 'Some problem.',
+  message: 'There is some problem, please try again later!',
+};
 
 export const useFetchForecastProgramAPI =
   (): useFetchForecastProgramAPIReturn => {
@@ -29,16 +38,21 @@ export const useFetchForecastProgramAPI =
             location.hasOwnProperty('Latitude') &&
             location.hasOwnProperty('Longitude');
 
-          const forecastRequest = await fetch(
+          const forecastResponse = await fetch(
             `${weatherUrls.forecastProgramUrl}?location=${
               isFetchOnGeoLocation
-                ? location.latitude + ',' + location.longitude
+                ? location.longitude + ',' + location.latitude
                 : location
             }&apikey=${apiKey}${acceptQueryParam}`
           );
 
-          if (forecastRequest.status === 200) {
-            const parsedResponse = await forecastRequest.json();
+          if (!forecastResponse.ok) {
+            const errorResponseHandling = await forecastResponse.json();
+            throw errorResponseHandling;
+          }
+
+          if (forecastResponse.status === 200) {
+            const parsedResponse = await forecastResponse.json();
 
             if (
               parsedResponse?.timelines.daily?.[0]?.values &&
@@ -108,7 +122,11 @@ export const useFetchForecastProgramAPI =
             error.hasOwnProperty('message')
           ) {
             setProgramError(error);
+          } else {
+            setProgramError(defaultErrorValue);
           }
+          setLocationName('');
+          setProgramForecast(defaultProgramForecastValues);
         } finally {
           setProgramLoading(false);
         }
