@@ -1,0 +1,75 @@
+.Wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 0.3fr 1fr;
+  padding: 2%;
+  color: #ffffff;
+
+  .Left-column {
+    border-right: 3px solid rgb(255, 255, 255);
+  }
+
+  .Day-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    grid-column-start: 1;
+    grid-column-end: -1;
+
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  .Sunrise-wrapper,
+  .Sunset-wrapper,
+  .Wind-wrapper,
+  .Cloud-Base-wrapper,
+  .Air-humidity-wrapper,
+  .Uv-index-wrapper,
+  .Temperature-wrapper {
+    display: flex;
+    gap: 10px;
+    padding: 0 15px;
+  }
+
+  .Sunrise-wrapper,
+  .Sunset-wrapper,
+  .Wind-wrapper,
+  .Cloud-Base-wrapper,
+  .Temperature-wrapper {
+    justify-content: end;
+    align-items: center;
+  }
+
+  .Air-humidity-wrapper,
+  .Uv-index-wrapper {
+    align-items: center;
+  }
+
+  @media (max-width: 736px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.1fr 1fr;
+
+    padding: 10% 0;
+    font-size: 0.8rem;
+
+    .Left-column {
+      border: none;
+    }
+
+    .Data-wrapper,
+    .Sunset-wrapper,
+    .Sunrise-wrapper,
+    .Wind-wrapper,
+    .Cloud-Base-wrapper,
+    .Temperature-wrapper,
+    .Cloud-Base-wrapper,
+    .Air-humidity-wrapper,
+    .Uv-index-wrapper {
+      justify-content: flex-start;
+      align-items: center;
+    }
+  }
+}
