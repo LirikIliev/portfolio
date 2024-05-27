@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useCallback, useContext } from 'react';
 
 import DailyForecastTemplate from './ForecastProgramTemplate';
 import DailyForecastMissingMessage from './ForecastProgramMissingMessage';
@@ -13,24 +13,26 @@ const DailyForecastTemplateWrapper: React.FC = () => {
       timelines: { daily },
     },
     programLoading,
-    programError,
+    dailyLoading,
   } = useContext(ForecastContext);
 
   const isDailyInformationMissed =
-    (!programLoading && daily.length === 0) ||
-    (!programLoading && !daily) ||
-    programError.message.length > 0;
+    (!dailyLoading && daily.length === 0) || (!dailyLoading && !daily);
   const isDailyInformationAvailable =
     !programLoading && daily && daily?.length > 0;
+
+  const dayInformation = useCallback(
+    () =>
+      daily.map((day) => (
+        <DailyForecastTemplate key={day.time} dayData={day} />
+      )),
+    [daily]
+  );
 
   return (
     <div className={classes['DailyWrapper']}>
       {programLoading ? <LoadingScreen /> : null}
-      {isDailyInformationAvailable
-        ? daily.map((day) => (
-            <DailyForecastTemplate key={day.time} dayData={day} />
-          ))
-        : null}
+      {isDailyInformationAvailable ? dayInformation() : null}
       {isDailyInformationMissed ? <DailyForecastMissingMessage /> : null}
     </div>
   );
