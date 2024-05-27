@@ -1,3 +1,26 @@
-div#root {
-  width: fit-content;
+body,
+html {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+  color: black;
+}
+
+html {
+  font-size: 100%;
+  background: url('../public/mountains-190055_1920.jpg') no-repeat center center
+    fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-color: rgba(255, 145, 20, 0.2);
+  transition: background-color 1s ease-in-out;
+}
+
+body div#root {
+  display: flex;
+  min-height: 100vh;
 }
