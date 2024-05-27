@@ -1,27 +1,7 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
-}
-
-html {
-  font-size: 100%;
-  background: url('../public/mountains-190055_1920.jpg') no-repeat center center
-    fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-color: rgba(255, 145, 20, 0.2);
-  transition: background-color 1s ease-in-out;
-}
-
-body {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  margin: 0px;
-  padding: 0px;
-
-  text-align: center;
-  color: black;
+  box-sizing: inherit;
 }
 
 h1,
@@ -43,7 +23,7 @@ h1,
 h2,
 h3 {
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.1;
 }
 
 p {
@@ -58,9 +38,21 @@ a:active {
 
 .App {
   display: flex;
-  height: 100vh;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
   padding: 50px 0;
+}
+
+.header-section {
+  display: flex;
+  flex: 0.1;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.main-section {
+  display: flex;
+  flex: 0.8;
+  flex-direction: column;
+  justify-content: center;
 }
