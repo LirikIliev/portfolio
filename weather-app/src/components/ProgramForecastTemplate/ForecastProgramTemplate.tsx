@@ -1,5 +1,5 @@
 import { ProgramDataInterface } from '../../types/forecastTypes';
-import { WeatherDailyCodes } from '../../helpers/forecastIconCodes';
+import { weatherDailyCodes } from '../../helpers/forecastIconCodes';
 import Icon from '../../icons/Icon';
 import { TEMPERATURE_TYPE } from '../../helpers/config';
 
@@ -7,6 +7,7 @@ import classes from './ForecastProgramTemplate.module.scss';
 import { useContext, useMemo } from 'react';
 import { ForecastContext } from '../../context/ForecastContext';
 import { dateFromString } from '../../helpers/convertStringToDate';
+import { useMobileScreenDetection } from '../../hooks/useMobileScreenDetection';
 
 interface DayInterface {
   dayData: ProgramDataInterface;
@@ -23,8 +24,16 @@ const DailyForecastTemplate: React.FC<DayInterface> = ({ dayData }) => {
       weatherCodeMax,
     },
   } = dayData;
-  const { typeOfTemperature } = useContext(ForecastContext);
+  const { typeOfTemperature, setIsModalOpen, setDetailForecast } =
+    useContext(ForecastContext);
   const { day, dateOfMonth, month } = dateFromString(time);
+  const { isMobile } = useMobileScreenDetection();
+
+  const showModalWithDetailInformation = () => {
+    const { time, values } = dayData;
+    setDetailForecast({ time, values });
+    setIsModalOpen(true);
+  };
 
   const minTemperature = useMemo(
     () =>
@@ -50,7 +59,10 @@ const DailyForecastTemplate: React.FC<DayInterface> = ({ dayData }) => {
   );
 
   return (
-    <div className={classes['Wrapper']}>
+    <button
+      className={classes['Wrapper']}
+      onClick={showModalWithDetailInformation}
+    >
       <div className={classes['TitleWrapper']}>
         <h1 className={classes['Day']}>{day}</h1>
         <h3
@@ -70,18 +82,17 @@ const DailyForecastTemplate: React.FC<DayInterface> = ({ dayData }) => {
           </p>
         ) : null}
       </div>
-      <div className={classes['IconWrapper']}>
-        <Icon
-          iconName={
-            WeatherDailyCodes[weatherCodeMax]
-              ? WeatherDailyCodes[weatherCodeMax]
-              : WeatherDailyCodes[0]
-          }
-          size={90}
-          metrics="px"
-        />
-      </div>
-    </div>
+      <Icon
+        iconName={
+          weatherDailyCodes[weatherCodeMax]
+            ? weatherDailyCodes[weatherCodeMax]
+            : weatherDailyCodes[0]
+        }
+        size={isMobile ? 55 : 60}
+        metrics="px"
+      />
+      <div className={classes['Detail-button']}>Details</div>
+    </button>
   );
 };
 
