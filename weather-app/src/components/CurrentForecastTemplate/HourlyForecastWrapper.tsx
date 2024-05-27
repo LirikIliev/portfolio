@@ -1,10 +1,13 @@
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 
 import { DailyDataInterface } from '../../types/forecastTypes';
 import { ForecastContext } from '../../context/ForecastContext';
 import HourlyForecastTemplate from './HourlyForecastTemplate';
+import HourlyForecastTitle from './HourlyForecastTitle';
 
 import classes from './HourlyForecastWrapper.module.scss';
+import { dateFromString } from '../../helpers/convertStringToDate';
+import { hourlyOrder } from '../../helpers/hourlyOrder';
 
 const HourlyForecastWrapper: React.FC = () => {
   const {
@@ -13,24 +16,32 @@ const HourlyForecastWrapper: React.FC = () => {
     },
   } = useContext(ForecastContext);
 
+  const hourlyExtractedData = useMemo(
+    () => hourly.filter((_, i) => i % 2 === 0),
+    [hourly]
+  );
+
+  const hourlyForecastTitleOrder = useMemo(() => {
+    const forecastHourlyOrder: string[] = [];
+    for (let i = 0; i < hourlyExtractedData.length; i += 3) {
+      const { time } = hourlyExtractedData[i];
+      const { hour } = dateFromString(time);
+      forecastHourlyOrder.push(hourlyOrder(hour));
+    }
+    return forecastHourlyOrder;
+  }, [hourlyExtractedData]);
+
   return (
     <div className={classes['Daily-forecast-wrapper']}>
-      <div className={classes['Split-daily-parts']}>
-        <p>Night</p>
-        <p>Morning</p>
-        <p>Day</p>
-        <p>Evening</p>
-      </div>
+      <HourlyForecastTitle partOfTheDays={hourlyForecastTitleOrder} />
       <div className={classes['Hourly-wrapper']}>
-        {hourly.map((hourDate: DailyDataInterface, i) =>
-          i % 2 === 0 ? (
-            <HourlyForecastTemplate
-              key={hourDate.time}
-              values={hourDate.values}
-              time={hourDate.time}
-            />
-          ) : null
-        )}
+        {hourlyExtractedData.map((hourDate: DailyDataInterface) => (
+          <HourlyForecastTemplate
+            key={hourDate.time}
+            values={hourDate.values}
+            time={hourDate.time}
+          />
+        ))}
       </div>
     </div>
   );
