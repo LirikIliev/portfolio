@@ -1,7 +1,11 @@
 interface WeatherDailyCodesInterface {
   [key: number]: string;
 }
-export const WeatherDailyCodes: WeatherDailyCodesInterface = {
+interface OtherWeatherCodesInterface {
+  [key: string]: string;
+}
+
+export const weatherDailyCodes: WeatherDailyCodesInterface = {
   0: 'Unknown',
   1000: 'Clear, Sunny',
   1100: 'Mostly Clear',
@@ -26,4 +30,15 @@ export const WeatherDailyCodes: WeatherDailyCodesInterface = {
   7101: 'Heavy Ice Pellets',
   7102: 'Light Ice Pellets',
   8000: 'Thunderstorm',
+};
+
+export const weatherIconsNames: OtherWeatherCodesInterface = {
+  Sunrise: 'Sunrise',
+  Sunset: 'Sunset',
+  Wind: 'Wind',
+  UvIndex: 'UvIndex',
+  HeightPressure: 'HeightPressure',
+  LowPressure: 'LowPressure',
+  Thermometer: 'Thermometer',
+  Humidity: 'Humidity',
 };
