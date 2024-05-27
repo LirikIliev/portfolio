@@ -41,4 +41,20 @@
       color: green;
     }
   }
+
+  @media (max-width: 736px) {
+    justify-content: center;
+
+    .Header {
+      font-size: 1rem;
+    }
+
+    .Temperature-sign-button {
+      font-size: 1rem;
+    }
+
+    .Text {
+      font-size: 0.8rem;
+    }
+  }
 }
