@@ -37,5 +37,13 @@
         color: rgb(129, 129, 129);
       }
     }
+
+    @media (max-width: 736px) {
+      font-size: 1rem;
+
+      .Sunrise-sunset-wrapper {
+        font-size: 0.8rem;
+      }
+    }
   }
 }

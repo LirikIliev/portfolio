@@ -2,7 +2,7 @@ import { useContext, useMemo } from 'react';
 
 import { ForecastContext } from '../../context/ForecastContext';
 import { dateFromString } from '../../helpers/convertStringToDate';
-import { WeatherDailyCodes } from '../../helpers/forecastIconCodes';
+import { weatherDailyCodes } from '../../helpers/forecastIconCodes';
 import { TEMPERATURE_TYPE } from '../../helpers/config';
 import Icon from '../../icons/Icon';
 
@@ -65,9 +65,9 @@ const CurrentTemperature: React.FC = () => {
     <div className={classes['Wrapper']}>
       <Icon
         iconName={
-          WeatherDailyCodes[weatherCodeMax]
-            ? WeatherDailyCodes[weatherCodeMax]
-            : WeatherDailyCodes[0]
+          weatherDailyCodes[weatherCodeMax]
+            ? weatherDailyCodes[weatherCodeMax]
+            : weatherDailyCodes[0]
         }
         size={80}
         styles={{ gridRow: '1 / -1', alignSelf: 'center' }}
