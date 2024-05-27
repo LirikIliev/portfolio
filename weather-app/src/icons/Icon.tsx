@@ -19,6 +19,12 @@ import {
   Thermometer,
   Thunderstorm,
   Unknown,
+  PartlyCloudyNight,
+  Sunrise,
+  Sunset,
+  Wind,
+  UvIndex,
+  Humidity,
 } from './';
 
 import classes from './Icon.module.scss';
@@ -61,6 +67,12 @@ const IconMap: IconMapInterface = {
   'Light Ice Pellets': <IcePellets />,
   Thunderstorm: <Thunderstorm />,
   Location: <Location />,
+  'Partly Cloudy Night': <PartlyCloudyNight />,
+  Sunrise: <Sunrise />,
+  Sunset: <Sunset />,
+  Wind: <Wind />,
+  UvIndex: <UvIndex />,
+  Humidity: <Humidity />,
 };
 
 const Icon: React.FC<IconWrapperInterface> = ({
