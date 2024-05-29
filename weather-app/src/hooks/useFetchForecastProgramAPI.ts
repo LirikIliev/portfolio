@@ -35,13 +35,13 @@ export const useFetchForecastProgramAPI =
           setProgramLoading(true);
           const isFetchOnGeoLocation =
             location instanceof Object &&
-            location.hasOwnProperty('Latitude') &&
-            location.hasOwnProperty('Longitude');
+            location.hasOwnProperty('latitude') &&
+            location.hasOwnProperty('longitude');
 
           const forecastResponse = await fetch(
             `${weatherUrls.forecastProgramUrl}?location=${
               isFetchOnGeoLocation
-                ? location.longitude + ',' + location.latitude
+                ? location.latitude + ',' + location.longitude
                 : location
             }&apikey=${apiKey}${acceptQueryParam}`
           );

@@ -19,8 +19,8 @@ export const useFetchForecastDailyAPI = () => {
         setDailyLoading(true);
         const isFetchOnGeoLocation =
           location instanceof Object &&
-          location.hasOwnProperty('Latitude') &&
-          location.hasOwnProperty('Longitude');
+          location.hasOwnProperty('latitude') &&
+          location.hasOwnProperty('longitude');
         const forecastResponse = await fetch(
           `${weatherUrls.forecastDailyUrl}?location=${
             isFetchOnGeoLocation
