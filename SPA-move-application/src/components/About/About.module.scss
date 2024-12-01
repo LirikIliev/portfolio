@@ -1,0 +1,61 @@
+.About_container {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+
+  backdrop-filter: blur(40px);
+  background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.8) 50%,
+      rgba(0, 0, 0, 1) 100%
+    ),
+    url('/src/assets/images/homepageBackgroundBlurred.jpg') no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  .Article_wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+
+    text-align: justify;
+
+    .Title_wrapper {
+      width: 90%;
+      font-size: 1.5rem;
+
+      .Title {
+        text-align: center;
+      }
+    }
+
+    .Redirect_button {
+      display: flex;
+      width: 80%;
+      height: 40px;
+      justify-content: center;
+      align-items: center;
+
+      border-radius: 10px;
+      color: rgb(56, 56, 56);
+      font-weight: bold;
+      text-transform: uppercase;
+      text-align: center;
+      text-decoration: none;
+      background-color: rgb(255, 187, 47);
+    }
+
+    .Main_information_Wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 1rem;
+      gap: 0.5rem;
+      font-size: 1.1rem;
+    }
+  }
+}

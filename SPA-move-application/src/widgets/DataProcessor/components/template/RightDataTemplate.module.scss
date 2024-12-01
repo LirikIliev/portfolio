@@ -1,0 +1,31 @@
+.Right_template_container {
+  min-width: 250px;
+  max-width: 450px;
+  display: grid;
+  margin: 0.3rem 0;
+  grid-template-columns: 1fr 7fr;
+  grid-template-rows: 0.5fr;
+
+  border: 1px solid #232424;
+  border-radius: 10px;
+
+  .Image {
+    width: 40px;
+    border-radius: 10px;
+  }
+  .Text_wrapper {
+    width: 60%;
+
+    .Text {
+      display: block;
+      padding: 0;
+      margin: 0;
+
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+
+      white-space: nowrap;
+    }
+  }
+}

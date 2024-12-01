@@ -1,0 +1,52 @@
+.Footer_container {
+  display: flex;
+  padding: 2rem 0;
+  justify-content: center;
+  font-size: 1.1rem;
+
+  .Grid_container {
+    display: grid;
+    width: 80%;
+    padding: 1rem 0;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr 2fr;
+    grid-auto-flow: column;
+    justify-items: center;
+
+    border: 2px solid gray;
+    border-radius: 10px;
+
+    .Navigation_container {
+      display: flex;
+      flex-direction: column;
+
+      .Navigation {
+        text-decoration: none;
+        color: white;
+      }
+
+      .Request {
+        margin: 0;
+        padding: 0;
+
+        border: none;
+        color: white;
+        background: transparent;
+        font-size: 1.1rem;
+      }
+    }
+
+    .Navigation,
+    .Request {
+      width: max-content;
+      padding: 0 5px;
+      border-radius: 3px;
+      font-weight: 500;
+
+      &:hover {
+        background-color: rgb(255, 187, 47);
+        color: rgb(56, 56, 56);
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+.Header_Wrapper {
+  display: flex;
+  padding: 0.5rem 1rem;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  .Header_Wrapper_title {
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .Header_button {
+    margin: 0 0.2rem;
+    padding: 0.2rem;
+    width: 80px;
+    background-color: #797979;
+    color: white;
+
+    border: none;
+    border-radius: 6px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+
+    &:hover {
+      background-color: rgb(255, 187, 47);
+      color: black;
+    }
+  }
+}

@@ -1,0 +1,32 @@
+.Main_navigation_wrapper {
+  background-color: rgb(94, 0, 0);
+  .Header-wrapper {
+    height: 6vh;
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: nowrap;
+
+    .Left-navigation,
+    .Right-navigation,
+    .Center-navigation {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .Left-navigation {
+      flex-grow: 0.1;
+      justify-content: baseline;
+    }
+
+    .Center-navigation {
+      justify-content: center;
+    }
+
+    .Right-navigation {
+      flex-grow: 0.1;
+      justify-content: center;
+    }
+  }
+}

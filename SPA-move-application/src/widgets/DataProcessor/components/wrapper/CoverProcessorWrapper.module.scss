@@ -1,0 +1,12 @@
+.CoverProcessor_template_container {
+  display: grid;
+  grid-template-columns: repeat(6, 0.5fr) 2fr;
+  gap: 0.5rem;
+  grid-template-rows: repeat(3, 0.5fr);
+  grid-auto-rows: 0.5fr;
+
+  overflow: auto;
+  scrollbar-color: white transparent;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+}
