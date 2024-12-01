@@ -1,46 +1,114 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 🌤 Weather App
 
-## Available Scripts
+## 🌟 Overview
+A **React** application to display weather updates in real-time. This project leverages modern React features and TypeScript for robust and type-safe development.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🚀 Features
+- **Real-Time Weather Updates**: Fetches live data from an API.
+- **TypeScript Integration**: Provides type safety and better developer experience.
+- **Responsive Design**: Optimized for desktops, tablets, and mobile devices.
+- **SCSS Styling**: Modular and maintainable CSS using SCSS.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 🛠 Installation
 
-### `npm test`
+1. **Clone the Repository**:
+   ```bash
+   git clone <repository-url>
+   cd weather-app
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
 
-### `npm run build`
+3. **Start Development Server**:
+   ```bash
+   npm start
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🧩 Folder Structure
+```
+📂 src
+ ┣ 📂 components       # Reusable React components
+ ┣ 📂 pages            # Main application pages
+ ┣ 📂 styles           # SCSS files for styling
+ ┣ 📂 assets           # Images, icons, etc.
+ ┣ 📜 App.tsx          # Main app entry point
+ ┗ 📜 index.tsx        # React DOM rendering
+📂 public
+ ┣ 📜 index.html       # Main HTML template
+ ┗ 📜 favicon.ico      # App icon
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 📜 Scripts
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- **Start Development Server**:
+  ```bash
+  npm start
+  ```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **Build for Production**:
+  ```bash
+  npm run build
+  ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- **Run Tests**:
+  ```bash
+  npm test
+  ```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- **Eject Configuration**:
+  ```bash
+  npm run eject
+  ```
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 📦 Dependencies
+| Package                       | Version  | Purpose                          |
+|-------------------------------|----------|----------------------------------|
+| `react`                       | ^18.3.1  | Core React library               |
+| `react-dom`                   | ^18.3.1  | React rendering engine           |
+| `typescript`                  | ^4.9.5   | TypeScript integration           |
+| `sass`                        | ^1.75.0  | SCSS styling support             |
+| `@testing-library/react`      | ^13.4.0  | React testing utilities          |
+| `@types/react`                | ^18.3.1  | Type definitions for React       |
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
+
+## 🛠 Development Dependencies
+| Package                       | Version  | Purpose                          |
+|-------------------------------|----------|----------------------------------|
+| `@testing-library/jest-dom`   | ^5.17.0  | Custom Jest matchers             |
+| `@testing-library/user-event` | ^13.5.0  | Simulates user interactions      |
+| `web-vitals`                  | ^2.1.4   | Measure performance metrics      |
+
+---
+
+## 🌐 Browsers Support
+This project supports modern browsers:
+- Chrome
+- Firefox
+- Safari
+
+---
+
+## 💡 Future Enhancements
+- 📱 **Mobile App**: Convert the app to a React Native version.
+- 🌐 **Weather Alerts**: Add notifications for severe weather conditions.
+- 🎨 **Theme Support**: Add dark and light themes.
+
+---
+
+## 📄 License
+This project is licensed under the **ISC License**.
